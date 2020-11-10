@@ -1,0 +1,92 @@
+{
+  "name": "Activity",
+  "fields": [
+    {
+      "fieldName": "name",
+      "fieldType": "String",
+      "fieldValidateRules": [
+        "required"
+      ]
+    },
+    {
+      "fieldName": "date",
+      "fieldType": "LocalDate",
+      "fieldValidateRules": [
+        "required"
+      ]
+    },
+    {
+      "fieldName": "place",
+      "fieldType": "String",
+      "javadoc": "the place the activity takes place in"
+    },
+    {
+      "fieldName": "capacity",
+      "fieldType": "Integer",
+      "javadoc": "number of student acceptable",
+      "fieldValidateRules": [
+        "min"
+      ],
+      "fieldValidateRulesMin": "0"
+    },
+    {
+      "fieldName": "inscriptionOpen",
+      "fieldType": "Boolean",
+      "fieldValidateRules": [
+        "required"
+      ]
+    },
+    {
+      "fieldName": "coeff",
+      "fieldType": "Float",
+      "fieldValidateRules": [
+        "min",
+        "max"
+      ],
+      "fieldValidateRulesMin": "0",
+      "fieldValidateRulesMax": "1"
+    },
+    {
+      "fieldName": "lake",
+      "fieldType": "Lakes",
+      "javadoc": "the name of lake in particular",
+      "fieldValues": "LAFFREY,MONTEYNARD,MEZE,HYERES,LEUCATE"
+    }
+  ],
+  "relationships": [
+    {
+      "relationshipType": "one-to-many",
+      "otherEntityName": "studentActivity",
+      "otherEntityRelationshipName": "activity",
+      "relationshipName": "studentActivity"
+    },
+    {
+      "relationshipType": "many-to-many",
+      "otherEntityName": "instructor",
+      "otherEntityRelationshipName": "participateActivity",
+      "relationshipName": "monitors",
+      "otherEntityField": "id",
+      "ownerSide": false
+    },
+    {
+      "relationshipType": "many-to-many",
+      "otherEntityName": "instructor",
+      "otherEntityRelationshipName": "editableActivity",
+      "relationshipName": "managers",
+      "otherEntityField": "id",
+      "ownerSide": false
+    }
+  ],
+  "changelogDate": "20201110101115",
+  "javadoc": "Activity entity",
+  "entityTableName": "activity",
+  "dto": "no",
+  "pagination": "no",
+  "service": "no",
+  "jpaMetamodelFiltering": false,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "clientRootFolder": "",
+  "applications": "*"
+}

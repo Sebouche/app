@@ -1,0 +1,36 @@
+{
+  "ecomApp": {
+    "activity": {
+      "home": {
+        "title": "Activities",
+        "createLabel": "Créer un nouveau Activity",
+        "createOrEditLabel": "Créer ou éditer un Activity",
+        "notFound": "Aucun Activity trouvé"
+      },
+      "created": "Un nouveau Activity a été créé avec l'identifiant {{ param }}",
+      "updated": "Le Activity avec l'identifiant {{ param }} a été mis à jour",
+      "deleted": "Le Activity avec l'identifiant {{ param }} a été supprimé",
+      "delete": {
+        "question": "Etes-vous certain de vouloir supprimer le Activity {{ id }} ?"
+      },
+      "detail": {
+        "title": "Activity"
+      },
+      "name": "Name",
+      "date": "Date",
+      "place": "Place",
+      "capacity": "Capacity",
+      "inscriptionOpen": "Inscription Open",
+      "coeff": "Coeff",
+      "lake": "Lake",
+      "studentActivity": "Student Activity",
+      "monitors": "Monitors",
+      "managers": "Managers",
+      "help": {
+        "place": "the place the activity takes place in",
+        "capacity": "number of student acceptable",
+        "lake": "the name of lake in particular"
+      }
+    }
+  }
+}

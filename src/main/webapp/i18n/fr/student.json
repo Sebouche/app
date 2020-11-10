@@ -1,0 +1,32 @@
+{
+  "ecomApp": {
+    "student": {
+      "home": {
+        "title": "Students",
+        "createLabel": "Créer un nouveau Student",
+        "createOrEditLabel": "Créer ou éditer un Student",
+        "notFound": "Aucun Student trouvé"
+      },
+      "created": "Un nouveau Student a été créé avec l'identifiant {{ param }}",
+      "updated": "Le Student avec l'identifiant {{ param }} a été mis à jour",
+      "deleted": "Le Student avec l'identifiant {{ param }} a été supprimé",
+      "delete": {
+        "question": "Etes-vous certain de vouloir supprimer le Student {{ id }} ?"
+      },
+      "detail": {
+        "title": "Student"
+      },
+      "sportLevel": "Sport Level",
+      "drivingLicence": "Driving Licence",
+      "meetingPlace": "Meeting Place",
+      "internalUser": "Internal User",
+      "semesterInscription": "Semester Inscription",
+      "studentActivity": "Student Activity",
+      "cursus": "Cursus",
+      "material": "Material",
+      "help": {
+        "meetingPlace": "the place the student accept to depart to the activities"
+      }
+    }
+  }
+}

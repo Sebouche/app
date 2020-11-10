@@ -1,0 +1,50 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="material">
+            <h2><span jhiTranslate="ecomApp.material.detail.title">Material</span> {{ material.id }}</h2>
+
+            <hr>
+
+            <jhi-alert-error></jhi-alert-error>
+
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="ecomApp.material.student">Student</span></dt>
+                <dd>
+                    <span *ngFor="let student of material.students; let last = last">
+                        <a [routerLink]="['/student', student?.id, 'view']">{{ student.id }}</a>{{ last ? '' : ', ' }}
+                    </span>
+                </dd>
+                <dt><span jhiTranslate="ecomApp.material.board">Board</span></dt>
+                <dd>
+                    <div *ngIf="material.board">
+                        <a [routerLink]="['/board', material.board?.id, 'view']">{{ material.board?.id }}</a>
+                    </div>
+                </dd>
+                <dt><span jhiTranslate="ecomApp.material.sail">Sail</span></dt>
+                <dd>
+                    <div *ngIf="material.sail">
+                        <a [routerLink]="['/sail', material.sail?.id, 'view']">{{ material.sail?.id }}</a>
+                    </div>
+                </dd>
+                <dt><span jhiTranslate="ecomApp.material.tracksuit">Tracksuit</span></dt>
+                <dd>
+                    <div *ngIf="material.tracksuit">
+                        <a [routerLink]="['/tracksuit', material.tracksuit?.id, 'view']">{{ material.tracksuit?.id }}</a>
+                    </div>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/material', material.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

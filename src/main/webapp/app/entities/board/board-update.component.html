@@ -1,0 +1,104 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+            <h2 id="jhi-board-heading" jhiTranslate="ecomApp.board.home.createOrEditLabel">Create or edit a Board</h2>
+
+            <div>
+                <jhi-alert-error></jhi-alert-error>
+
+                <div class="form-group" [hidden]="!editForm.get('id')!.value">
+                    <label for="id" jhiTranslate="global.field.id">ID</label>
+                    <input type="text" class="form-control" id="id" name="id" formControlName="id" readonly />
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="ecomApp.board.boardId" for="field_boardId">Board Id</label>
+                    <input type="text" class="form-control" name="boardId" id="field_boardId"
+                           formControlName="boardId"/>
+                    <div *ngIf="editForm.get('boardId')!.invalid && (editForm.get('boardId')!.dirty || editForm.get('boardId')!.touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('boardId')?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="ecomApp.board.name" for="field_name">Name</label>
+                    <input type="text" class="form-control" name="name" id="field_name"
+                           formControlName="name"/>
+                    <div *ngIf="editForm.get('name')!.invalid && (editForm.get('name')!.dirty || editForm.get('name')!.touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('name')?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="ecomApp.board.volume" for="field_volume">Volume</label>
+                    <input type="number" class="form-control" name="volume" id="field_volume"
+                           formControlName="volume"/>
+                    <div *ngIf="editForm.get('volume')!.invalid && (editForm.get('volume')!.dirty || editForm.get('volume')!.touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('volume')?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                        <small class="form-text text-danger"
+                            [hidden]="!editForm.get('volume')?.errors?.number" jhiTranslate="entity.validation.number">
+                            This field should be a number.
+                        </small>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="ecomApp.board.level" for="field_level">Level</label>
+                    <select class="form-control" name="level" formControlName="level" id="field_level">
+                        <option value="BEGINNER">{{ 'ecomApp.SportLevel.BEGINNER' | translate }}</option>
+                        <option value="BEGINNER2">{{ 'ecomApp.SportLevel.BEGINNER2' | translate }}</option>
+                        <option value="BEGINNERSUP">{{ 'ecomApp.SportLevel.BEGINNERSUP' | translate }}</option>
+                        <option value="PERF">{{ 'ecomApp.SportLevel.PERF' | translate }}</option>
+                        <option value="PERFSUP">{{ 'ecomApp.SportLevel.PERFSUP' | translate }}</option>
+                        <option value="FUN">{{ 'ecomApp.SportLevel.FUN' | translate }}</option>
+                        <option value="FOIL">{{ 'ecomApp.SportLevel.FOIL' | translate }}</option>
+                        <option value="MONITOR">{{ 'ecomApp.SportLevel.MONITOR' | translate }}</option>
+                    </select>
+                    <div *ngIf="editForm.get('level')!.invalid && (editForm.get('level')!.dirty || editForm.get('level')!.touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('level')?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="ecomApp.board.usable" for="field_usable">Usable</label>
+                    <input type="checkbox" class="form-control" name="usable" id="field_usable"
+                           formControlName="usable"/>
+                    <div *ngIf="editForm.get('usable')!.invalid && (editForm.get('usable')!.dirty || editForm.get('usable')!.touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('usable')?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="ecomApp.board.comment" for="field_comment">Comment</label>
+                    <textarea class="form-control" name="comment" id="field_comment"
+                              formControlName="comment"></textarea>
+                </div>
+            </div>
+
+            <div>
+                <button type="button" id="cancel-save" class="btn btn-secondary" (click)="previousState()">
+                    <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+                </button>
+
+                <button type="submit" id="save-entity" [disabled]="editForm.invalid || isSaving" class="btn btn-primary">
+                    <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

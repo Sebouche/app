@@ -1,0 +1,54 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="semesterInscription">
+            <h2><span jhiTranslate="ecomApp.semesterInscription.detail.title">Semester Inscription</span> {{ semesterInscription.id }}</h2>
+
+            <hr>
+
+            <jhi-alert-error></jhi-alert-error>
+
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="ecomApp.semesterInscription.noted">Noted</span></dt>
+                <dd>
+                    <span>{{ semesterInscription.noted }}</span>
+                </dd>
+                <dt><span jhiTranslate="ecomApp.semesterInscription.noteMax">Note Max</span></dt>
+                <dd>
+                    <span>{{ semesterInscription.noteMax }}</span>
+                </dd>
+                <dt><span jhiTranslate="ecomApp.semesterInscription.noteGiven">Note Given</span></dt>
+                <dd>
+                    <span>{{ semesterInscription.noteGiven }}</span>
+                </dd>
+                <dt><span jhiTranslate="ecomApp.semesterInscription.paid" [ngbTooltip]="'ecomApp.semesterInscription.help.paid' | translate">Paid</span></dt>
+                <dd>
+                    <span>{{ semesterInscription.paid }}</span>
+                </dd>
+                <dt><span jhiTranslate="ecomApp.semesterInscription.student">Student</span></dt>
+                <dd>
+                    <div *ngIf="semesterInscription.student">
+                        <a [routerLink]="['/student', semesterInscription.student?.id, 'view']">{{ semesterInscription.student?.id }}</a>
+                    </div>
+                </dd>
+                <dt><span jhiTranslate="ecomApp.semesterInscription.semester">Semester</span></dt>
+                <dd>
+                    <div *ngIf="semesterInscription.semester">
+                        <a [routerLink]="['/semester', semesterInscription.semester?.id, 'view']">{{ semesterInscription.semester?.id }}</a>
+                    </div>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/semester-inscription', semesterInscription.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

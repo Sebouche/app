@@ -1,0 +1,66 @@
+{
+  "name": "Board",
+  "fields": [
+    {
+      "fieldName": "boardId",
+      "fieldType": "String",
+      "fieldValidateRules": [
+        "required"
+      ]
+    },
+    {
+      "fieldName": "name",
+      "fieldType": "String",
+      "fieldValidateRules": [
+        "required"
+      ]
+    },
+    {
+      "fieldName": "volume",
+      "fieldType": "Integer",
+      "fieldValidateRules": [
+        "required"
+      ]
+    },
+    {
+      "fieldName": "level",
+      "fieldType": "SportLevel",
+      "fieldValues": "BEGINNER,BEGINNER2,BEGINNERSUP,PERF,PERFSUP,FUN,FOIL,MONITOR",
+      "fieldValidateRules": [
+        "required"
+      ]
+    },
+    {
+      "fieldName": "usable",
+      "fieldType": "Boolean",
+      "fieldValidateRules": [
+        "required"
+      ]
+    },
+    {
+      "fieldName": "comment",
+      "fieldType": "byte[]",
+      "fieldTypeBlobContent": "text"
+    }
+  ],
+  "relationships": [
+    {
+      "relationshipType": "one-to-many",
+      "otherEntityName": "material",
+      "otherEntityRelationshipName": "board",
+      "relationshipName": "material"
+    }
+  ],
+  "changelogDate": "20201110101815",
+  "javadoc": "Board entity",
+  "entityTableName": "board",
+  "dto": "no",
+  "pagination": "no",
+  "service": "no",
+  "jpaMetamodelFiltering": false,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "clientRootFolder": "",
+  "applications": "*"
+}

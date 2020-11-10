@@ -1,0 +1,29 @@
+{
+  "ecomApp": {
+    "tracksuit": {
+      "home": {
+        "title": "Tracksuits",
+        "createLabel": "Créer un nouveau Tracksuit",
+        "createOrEditLabel": "Créer ou éditer un Tracksuit",
+        "notFound": "Aucun Tracksuit trouvé"
+      },
+      "created": "Un nouveau Tracksuit a été créé avec l'identifiant {{ param }}",
+      "updated": "Le Tracksuit avec l'identifiant {{ param }} a été mis à jour",
+      "deleted": "Le Tracksuit avec l'identifiant {{ param }} a été supprimé",
+      "delete": {
+        "question": "Etes-vous certain de vouloir supprimer le Tracksuit {{ id }} ?"
+      },
+      "detail": {
+        "title": "Tracksuit"
+      },
+      "tracksuitId": "Tracksuit Id",
+      "name": "Name",
+      "sizeMin": "Size Min",
+      "sizeMax": "Size Max",
+      "weightMin": "Weight Min",
+      "weightMax": "Weight Max",
+      "comment": "Comment",
+      "material": "Material"
+    }
+  }
+}

@@ -1,0 +1,28 @@
+{
+  "ecomApp": {
+    "sail": {
+      "home": {
+        "title": "Sails",
+        "createLabel": "Create a new Sail",
+        "createOrEditLabel": "Create or edit a Sail",
+        "notFound": "No Sails found"
+      },
+      "created": "A new Sail is created with identifier {{ param }}",
+      "updated": "A Sail is updated with identifier {{ param }}",
+      "deleted": "A Sail is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Sail {{ id }}?"
+      },
+      "detail": {
+        "title": "Sail"
+      },
+      "sailId": "Sail Id",
+      "name": "Name",
+      "area": "Area",
+      "level": "Level",
+      "usable": "Usable",
+      "comment": "Comment",
+      "material": "Material"
+    }
+  }
+}

@@ -1,0 +1,42 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="instructor">
+            <h2><span jhiTranslate="ecomApp.instructor.detail.title">Instructor</span> {{ instructor.id }}</h2>
+
+            <hr>
+
+            <jhi-alert-error></jhi-alert-error>
+
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="ecomApp.instructor.internalUser">Internal User</span></dt>
+                <dd>
+                    {{ instructor.internalUser?.id }}
+                </dd>
+                <dt><span jhiTranslate="ecomApp.instructor.participateActivity">Participate Activity</span></dt>
+                <dd>
+                    <span *ngFor="let participateActivity of instructor.participateActivities; let last = last">
+                        <a [routerLink]="['/activity', participateActivity?.id, 'view']">{{ participateActivity.id }}</a>{{ last ? '' : ', ' }}
+                    </span>
+                </dd>
+                <dt><span jhiTranslate="ecomApp.instructor.editableActivity">Editable Activity</span></dt>
+                <dd>
+                    <span *ngFor="let editableActivity of instructor.editableActivities; let last = last">
+                        <a [routerLink]="['/activity', editableActivity?.id, 'view']">{{ editableActivity.id }}</a>{{ last ? '' : ', ' }}
+                    </span>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/instructor', instructor.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

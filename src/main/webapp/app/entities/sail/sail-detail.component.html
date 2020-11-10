@@ -1,0 +1,50 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="sail">
+            <h2><span jhiTranslate="ecomApp.sail.detail.title">Sail</span> {{ sail.id }}</h2>
+
+            <hr>
+
+            <jhi-alert-error></jhi-alert-error>
+
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="ecomApp.sail.sailId">Sail Id</span></dt>
+                <dd>
+                    <span>{{ sail.sailId }}</span>
+                </dd>
+                <dt><span jhiTranslate="ecomApp.sail.name">Name</span></dt>
+                <dd>
+                    <span>{{ sail.name }}</span>
+                </dd>
+                <dt><span jhiTranslate="ecomApp.sail.area">Area</span></dt>
+                <dd>
+                    <span>{{ sail.area }}</span>
+                </dd>
+                <dt><span jhiTranslate="ecomApp.sail.level">Level</span></dt>
+                <dd>
+                    <span jhiTranslate="{{ 'ecomApp.SportLevel.' + sail.level }}">{{ sail.level }}</span>
+                </dd>
+                <dt><span jhiTranslate="ecomApp.sail.usable">Usable</span></dt>
+                <dd>
+                    <span>{{ sail.usable }}</span>
+                </dd>
+                <dt><span jhiTranslate="ecomApp.sail.comment">Comment</span></dt>
+                <dd>
+                    <span>{{ sail.comment }}</span>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/sail', sail.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

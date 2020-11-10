@@ -1,0 +1,119 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+            <h2 id="jhi-activity-heading" jhiTranslate="ecomApp.activity.home.createOrEditLabel">Create or edit a Activity</h2>
+
+            <div>
+                <jhi-alert-error></jhi-alert-error>
+
+                <div class="form-group" [hidden]="!editForm.get('id')!.value">
+                    <label for="id" jhiTranslate="global.field.id">ID</label>
+                    <input type="text" class="form-control" id="id" name="id" formControlName="id" readonly />
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="ecomApp.activity.name" for="field_name">Name</label>
+                    <input type="text" class="form-control" name="name" id="field_name"
+                           formControlName="name"/>
+                    <div *ngIf="editForm.get('name')!.invalid && (editForm.get('name')!.dirty || editForm.get('name')!.touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('name')?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="ecomApp.activity.date" for="field_date">Date</label>
+                    <div class="input-group">
+                        <input id="field_date" type="text" class="form-control" name="date" ngbDatepicker #dateDp="ngbDatepicker" formControlName="date"/>
+                        <span class="input-group-append">
+                            <button type="button" class="btn btn-secondary" (click)="dateDp.toggle()"><fa-icon icon="calendar-alt"></fa-icon></button>
+                        </span>
+                    </div>
+                    <div *ngIf="editForm.get('date')!.invalid && (editForm.get('date')!.dirty || editForm.get('date')!.touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('date')?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="ecomApp.activity.place" for="field_place" [ngbTooltip]="'ecomApp.activity.help.place' | translate">Place</label>
+                    <input type="text" class="form-control" name="place" id="field_place"
+                           formControlName="place"/>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="ecomApp.activity.capacity" for="field_capacity" [ngbTooltip]="'ecomApp.activity.help.capacity' | translate">Capacity</label>
+                    <input type="number" class="form-control" name="capacity" id="field_capacity"
+                           formControlName="capacity"/>
+                    <div *ngIf="editForm.get('capacity')!.invalid && (editForm.get('capacity')!.dirty || editForm.get('capacity')!.touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('capacity')?.errors?.min" jhiTranslate="entity.validation.min" [translateValues]="{ min: 0 }">
+                            This field should be at least 0.
+                        </small>
+                        <small class="form-text text-danger"
+                            [hidden]="!editForm.get('capacity')?.errors?.number" jhiTranslate="entity.validation.number">
+                            This field should be a number.
+                        </small>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="ecomApp.activity.inscriptionOpen" for="field_inscriptionOpen">Inscription Open</label>
+                    <input type="checkbox" class="form-control" name="inscriptionOpen" id="field_inscriptionOpen"
+                           formControlName="inscriptionOpen"/>
+                    <div *ngIf="editForm.get('inscriptionOpen')!.invalid && (editForm.get('inscriptionOpen')!.dirty || editForm.get('inscriptionOpen')!.touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('inscriptionOpen')?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="ecomApp.activity.coeff" for="field_coeff">Coeff</label>
+                    <input type="number" class="form-control" name="coeff" id="field_coeff"
+                           formControlName="coeff"/>
+                    <div *ngIf="editForm.get('coeff')!.invalid && (editForm.get('coeff')!.dirty || editForm.get('coeff')!.touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('coeff')?.errors?.min" jhiTranslate="entity.validation.min" [translateValues]="{ min: 0 }">
+                            This field should be at least 0.
+                        </small>
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('coeff')?.errors?.max" jhiTranslate="entity.validation.max" [translateValues]="{ max: 1 }">
+                            This field cannot be more than 1.
+                        </small>
+                        <small class="form-text text-danger"
+                            [hidden]="!editForm.get('coeff')?.errors?.number" jhiTranslate="entity.validation.number">
+                            This field should be a number.
+                        </small>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="ecomApp.activity.lake" for="field_lake" [ngbTooltip]="'ecomApp.activity.help.lake' | translate">Lake</label>
+                    <select class="form-control" name="lake" formControlName="lake" id="field_lake">
+                        <option value="LAFFREY">{{ 'ecomApp.Lakes.LAFFREY' | translate }}</option>
+                        <option value="MONTEYNARD">{{ 'ecomApp.Lakes.MONTEYNARD' | translate }}</option>
+                        <option value="MEZE">{{ 'ecomApp.Lakes.MEZE' | translate }}</option>
+                        <option value="HYERES">{{ 'ecomApp.Lakes.HYERES' | translate }}</option>
+                        <option value="LEUCATE">{{ 'ecomApp.Lakes.LEUCATE' | translate }}</option>
+                    </select>
+                </div>
+            </div>
+
+            <div>
+                <button type="button" id="cancel-save" class="btn btn-secondary" (click)="previousState()">
+                    <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+                </button>
+
+                <button type="submit" id="save-entity" [disabled]="editForm.invalid || isSaving" class="btn btn-primary">
+                    <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

@@ -1,0 +1,28 @@
+{
+  "ecomApp": {
+    "sail": {
+      "home": {
+        "title": "Sails",
+        "createLabel": "Créer un nouveau Sail",
+        "createOrEditLabel": "Créer ou éditer un Sail",
+        "notFound": "Aucun Sail trouvé"
+      },
+      "created": "Un nouveau Sail a été créé avec l'identifiant {{ param }}",
+      "updated": "Le Sail avec l'identifiant {{ param }} a été mis à jour",
+      "deleted": "Le Sail avec l'identifiant {{ param }} a été supprimé",
+      "delete": {
+        "question": "Etes-vous certain de vouloir supprimer le Sail {{ id }} ?"
+      },
+      "detail": {
+        "title": "Sail"
+      },
+      "sailId": "Sail Id",
+      "name": "Name",
+      "area": "Area",
+      "level": "Level",
+      "usable": "Usable",
+      "comment": "Comment",
+      "material": "Material"
+    }
+  }
+}

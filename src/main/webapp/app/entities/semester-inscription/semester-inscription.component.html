@@ -1,0 +1,79 @@
+<div>
+    <h2 id="page-heading">
+        <span jhiTranslate="ecomApp.semesterInscription.home.title">Semester Inscriptions</span>
+
+        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-semester-inscription" [routerLink]="['/semester-inscription/new']">
+            <fa-icon icon="plus"></fa-icon>
+            <span  jhiTranslate="ecomApp.semesterInscription.home.createLabel">
+            Create a new Semester Inscription
+            </span>
+        </button>
+    </h2>
+
+    <jhi-alert-error></jhi-alert-error>
+
+    <jhi-alert></jhi-alert>
+
+    <div class="alert alert-warning" id="no-result" *ngIf="semesterInscriptions?.length === 0">
+        <span jhiTranslate="ecomApp.semesterInscription.home.notFound">No semesterInscriptions found</span>
+    </div>
+
+    <div class="table-responsive" id="entities" *ngIf="semesterInscriptions && semesterInscriptions.length > 0">
+        <table class="table table-striped" aria-describedby="page-heading">
+            <thead>
+                <tr>
+                    <th scope="col" ><span jhiTranslate="global.field.id">ID</span></th>
+                    <th scope="col" ><span jhiTranslate="ecomApp.semesterInscription.noted">Noted</span></th>
+                    <th scope="col" ><span jhiTranslate="ecomApp.semesterInscription.noteMax">Note Max</span></th>
+                    <th scope="col" ><span jhiTranslate="ecomApp.semesterInscription.noteGiven">Note Given</span></th>
+                    <th scope="col" ><span jhiTranslate="ecomApp.semesterInscription.paid">Paid</span></th>
+                    <th scope="col" ><span jhiTranslate="ecomApp.semesterInscription.student">Student</span></th>
+                    <th scope="col" ><span jhiTranslate="ecomApp.semesterInscription.semester">Semester</span></th>
+                    <th scope="col"></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let semesterInscription of semesterInscriptions ;trackBy: trackId">
+                    <td><a [routerLink]="['/semester-inscription', semesterInscription.id, 'view']">{{ semesterInscription.id }}</a></td>
+                    <td>{{ semesterInscription.noted }}</td>
+                    <td>{{ semesterInscription.noteMax }}</td>
+                    <td>{{ semesterInscription.noteGiven }}</td>
+                    <td>{{ semesterInscription.paid }}</td>
+                    <td>
+                        <div *ngIf="semesterInscription.student">
+                            <a [routerLink]="['/student', semesterInscription.student?.id, 'view']" >{{ semesterInscription.student?.id }}</a>
+                        </div>
+                    </td>
+                    <td>
+                        <div *ngIf="semesterInscription.semester">
+                            <a [routerLink]="['/semester', semesterInscription.semester?.id, 'view']" >{{ semesterInscription.semester?.id }}</a>
+                        </div>
+                    </td>
+                    <td class="text-right">
+                        <div class="btn-group">
+                            <button type="submit"
+                                    [routerLink]="['/semester-inscription', semesterInscription.id, 'view']"
+                                    class="btn btn-info btn-sm">
+                                <fa-icon icon="eye"></fa-icon>
+                                <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+                            </button>
+
+                            <button type="submit"
+                                    [routerLink]="['/semester-inscription', semesterInscription.id, 'edit']"
+                                    class="btn btn-primary btn-sm">
+                                <fa-icon icon="pencil-alt"></fa-icon>
+                                <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+                            </button>
+
+                            <button type="submit" (click)="delete(semesterInscription)"
+                                    class="btn btn-danger btn-sm">
+                                <fa-icon icon="times"></fa-icon>
+                                <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

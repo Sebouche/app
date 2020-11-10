@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.9.xsd">
+    <!--
+        Added the constraints for entity Material.
+    -->
+    <changeSet id="20201110101615-2" author="jhipster">
+        
+        <addForeignKeyConstraint baseColumnNames="material_id"
+                                 baseTableName="material_student"
+                                 constraintName="fk_material_student_material_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="material"/>
+
+        <addForeignKeyConstraint baseColumnNames="student_id"
+                                 baseTableName="material_student"
+                                 constraintName="fk_material_student_student_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="student"/>
+        
+        <addForeignKeyConstraint baseColumnNames="board_id"
+                                 baseTableName="material"
+                                 constraintName="fk_material_board_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="board"/>
+
+        <addForeignKeyConstraint baseColumnNames="sail_id"
+                                 baseTableName="material"
+                                 constraintName="fk_material_sail_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="sail"/>
+
+        <addForeignKeyConstraint baseColumnNames="tracksuit_id"
+                                 baseTableName="material"
+                                 constraintName="fk_material_tracksuit_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="tracksuit"/>
+
+    </changeSet>
+</databaseChangeLog>

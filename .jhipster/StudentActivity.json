@@ -1,0 +1,45 @@
+{
+  "name": "StudentActivity",
+  "fields": [
+    {
+      "fieldName": "commentToIntructor",
+      "fieldType": "byte[]",
+      "javadoc": "Complementary information about the student",
+      "fieldTypeBlobContent": "text"
+    },
+    {
+      "fieldName": "commentByInstructor",
+      "fieldType": "byte[]",
+      "javadoc": "Comment for Student's eval",
+      "fieldTypeBlobContent": "text"
+    }
+  ],
+  "relationships": [
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "student",
+      "otherEntityRelationshipName": "studentActivity",
+      "relationshipName": "student",
+      "otherEntityField": "id"
+    },
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "activity",
+      "otherEntityRelationshipName": "studentActivity",
+      "relationshipName": "activity",
+      "otherEntityField": "id"
+    }
+  ],
+  "changelogDate": "20201110101215",
+  "javadoc": "Entity association of a student and an activity he took",
+  "entityTableName": "student_activity",
+  "dto": "no",
+  "pagination": "no",
+  "service": "no",
+  "jpaMetamodelFiltering": false,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "clientRootFolder": "",
+  "applications": "*"
+}

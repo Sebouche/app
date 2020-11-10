@@ -1,0 +1,11 @@
+id;sport_level;driving_licence;meeting_place
+1;PERFSUP;true;MINATEC
+2;BEGINNER2;false;SMH
+3;MONITOR;true;MINATEC
+4;BEGINNER2;true;SMH
+5;BEGINNERSUP;false;SMH
+6;FUN;true;MINATEC
+7;BEGINNER;true;MINATEC
+8;BEGINNER2;true;MINATEC
+9;FUN;false;MINATEC
+10;PERF;true;MINATEC

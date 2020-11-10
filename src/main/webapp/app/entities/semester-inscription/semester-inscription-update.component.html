@@ -1,0 +1,78 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+            <h2 id="jhi-semester-inscription-heading" jhiTranslate="ecomApp.semesterInscription.home.createOrEditLabel">Create or edit a Semester Inscription</h2>
+
+            <div>
+                <jhi-alert-error></jhi-alert-error>
+
+                <div class="form-group" [hidden]="!editForm.get('id')!.value">
+                    <label for="id" jhiTranslate="global.field.id">ID</label>
+                    <input type="text" class="form-control" id="id" name="id" formControlName="id" readonly />
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="ecomApp.semesterInscription.noted" for="field_noted">Noted</label>
+                    <input type="checkbox" class="form-control" name="noted" id="field_noted"
+                           formControlName="noted"/>
+                    <div *ngIf="editForm.get('noted')!.invalid && (editForm.get('noted')!.dirty || editForm.get('noted')!.touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('noted')?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="ecomApp.semesterInscription.noteMax" for="field_noteMax">Note Max</label>
+                    <input type="number" class="form-control" name="noteMax" id="field_noteMax"
+                           formControlName="noteMax"/>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="ecomApp.semesterInscription.noteGiven" for="field_noteGiven">Note Given</label>
+                    <input type="number" class="form-control" name="noteGiven" id="field_noteGiven"
+                           formControlName="noteGiven"/>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="ecomApp.semesterInscription.paid" for="field_paid" [ngbTooltip]="'ecomApp.semesterInscription.help.paid' | translate">Paid</label>
+                    <input type="checkbox" class="form-control" name="paid" id="field_paid"
+                           formControlName="paid"/>
+                    <div *ngIf="editForm.get('paid')!.invalid && (editForm.get('paid')!.dirty || editForm.get('paid')!.touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('paid')?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="ecomApp.semesterInscription.student" for="field_student">Student</label>
+                    <select class="form-control" id="field_student" name="student" formControlName="student">
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="studentOption.id === editForm.get('student')!.value?.id ? editForm.get('student')!.value : studentOption" *ngFor="let studentOption of students; trackBy: trackById">{{ studentOption.id }}</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="ecomApp.semesterInscription.semester" for="field_semester">Semester</label>
+                    <select class="form-control" id="field_semester" name="semester" formControlName="semester">
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="semesterOption.id === editForm.get('semester')!.value?.id ? editForm.get('semester')!.value : semesterOption" *ngFor="let semesterOption of semesters; trackBy: trackById">{{ semesterOption.id }}</option>
+                    </select>
+                </div>
+            </div>
+
+            <div>
+                <button type="button" id="cancel-save" class="btn btn-secondary" (click)="previousState()">
+                    <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+                </button>
+
+                <button type="submit" id="save-entity" [disabled]="editForm.invalid || isSaving" class="btn btn-primary">
+                    <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

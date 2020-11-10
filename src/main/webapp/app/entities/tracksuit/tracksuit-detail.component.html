@@ -1,0 +1,54 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="tracksuit">
+            <h2><span jhiTranslate="ecomApp.tracksuit.detail.title">Tracksuit</span> {{ tracksuit.id }}</h2>
+
+            <hr>
+
+            <jhi-alert-error></jhi-alert-error>
+
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="ecomApp.tracksuit.tracksuitId">Tracksuit Id</span></dt>
+                <dd>
+                    <span>{{ tracksuit.tracksuitId }}</span>
+                </dd>
+                <dt><span jhiTranslate="ecomApp.tracksuit.name">Name</span></dt>
+                <dd>
+                    <span>{{ tracksuit.name }}</span>
+                </dd>
+                <dt><span jhiTranslate="ecomApp.tracksuit.sizeMin">Size Min</span></dt>
+                <dd>
+                    <span>{{ tracksuit.sizeMin }}</span>
+                </dd>
+                <dt><span jhiTranslate="ecomApp.tracksuit.sizeMax">Size Max</span></dt>
+                <dd>
+                    <span>{{ tracksuit.sizeMax }}</span>
+                </dd>
+                <dt><span jhiTranslate="ecomApp.tracksuit.weightMin">Weight Min</span></dt>
+                <dd>
+                    <span>{{ tracksuit.weightMin }}</span>
+                </dd>
+                <dt><span jhiTranslate="ecomApp.tracksuit.weightMax">Weight Max</span></dt>
+                <dd>
+                    <span>{{ tracksuit.weightMax }}</span>
+                </dd>
+                <dt><span jhiTranslate="ecomApp.tracksuit.comment">Comment</span></dt>
+                <dd>
+                    <span>{{ tracksuit.comment }}</span>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/tracksuit', tracksuit.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

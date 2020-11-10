@@ -1,0 +1,72 @@
+{
+  "name": "Student",
+  "fields": [
+    {
+      "fieldName": "sportLevel",
+      "fieldType": "SportLevel",
+      "fieldValues": "BEGINNER,BEGINNER2,BEGINNERSUP,PERF,PERFSUP,FUN,FOIL,MONITOR"
+    },
+    {
+      "fieldName": "drivingLicence",
+      "fieldType": "Boolean",
+      "fieldValidateRules": [
+        "required"
+      ]
+    },
+    {
+      "fieldName": "meetingPlace",
+      "fieldType": "MeetingPlace",
+      "javadoc": "the place the student accept to depart to the activities",
+      "fieldValues": "SMH,MINATEC"
+    }
+  ],
+  "relationships": [
+    {
+      "relationshipType": "one-to-one",
+      "otherEntityName": "user",
+      "otherEntityRelationshipName": "student",
+      "relationshipName": "internalUser",
+      "otherEntityField": "id",
+      "ownerSide": true
+    },
+    {
+      "relationshipType": "one-to-many",
+      "otherEntityName": "semesterInscription",
+      "otherEntityRelationshipName": "student",
+      "relationshipName": "semesterInscription"
+    },
+    {
+      "relationshipType": "one-to-many",
+      "otherEntityName": "studentActivity",
+      "otherEntityRelationshipName": "student",
+      "relationshipName": "studentActivity"
+    },
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "cursus",
+      "otherEntityRelationshipName": "student",
+      "relationshipName": "cursus",
+      "otherEntityField": "id"
+    },
+    {
+      "relationshipType": "many-to-many",
+      "otherEntityName": "material",
+      "otherEntityRelationshipName": "student",
+      "relationshipName": "material",
+      "otherEntityField": "id",
+      "ownerSide": false
+    }
+  ],
+  "changelogDate": "20201110100915",
+  "javadoc": "Student entity",
+  "entityTableName": "student",
+  "dto": "no",
+  "pagination": "no",
+  "service": "no",
+  "jpaMetamodelFiltering": false,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "clientRootFolder": "",
+  "applications": "*"
+}
