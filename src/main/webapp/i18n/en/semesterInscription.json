@@ -1,0 +1,30 @@
+{
+  "ecomApp": {
+    "semesterInscription": {
+      "home": {
+        "title": "Semester Inscriptions",
+        "createLabel": "Create a new Semester Inscription",
+        "createOrEditLabel": "Create or edit a Semester Inscription",
+        "notFound": "No Semester Inscriptions found"
+      },
+      "created": "A new Semester Inscription is created with identifier {{ param }}",
+      "updated": "A Semester Inscription is updated with identifier {{ param }}",
+      "deleted": "A Semester Inscription is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Semester Inscription {{ id }}?"
+      },
+      "detail": {
+        "title": "Semester Inscription"
+      },
+      "noted": "Noted",
+      "noteMax": "Note Max",
+      "noteGiven": "Note Given",
+      "paid": "Paid",
+      "student": "Student",
+      "semester": "Semester",
+      "help": {
+        "paid": "if the semester is paid by the student"
+      }
+    }
+  }
+}

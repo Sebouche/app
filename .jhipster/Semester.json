@@ -1,0 +1,39 @@
+{
+  "name": "Semester",
+  "fields": [
+    {
+      "fieldName": "startDate",
+      "fieldType": "LocalDate",
+      "fieldValidateRules": [
+        "required"
+      ]
+    },
+    {
+      "fieldName": "endDate",
+      "fieldType": "LocalDate",
+      "fieldValidateRules": [
+        "required"
+      ]
+    }
+  ],
+  "relationships": [
+    {
+      "relationshipType": "one-to-many",
+      "otherEntityName": "semesterInscription",
+      "otherEntityRelationshipName": "semester",
+      "relationshipName": "semesterInscription"
+    }
+  ],
+  "changelogDate": "20201110101515",
+  "javadoc": "Semester entity",
+  "entityTableName": "semester",
+  "dto": "no",
+  "pagination": "no",
+  "service": "no",
+  "jpaMetamodelFiltering": false,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "clientRootFolder": "",
+  "applications": "*"
+}

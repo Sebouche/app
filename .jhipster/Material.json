@@ -1,0 +1,47 @@
+{
+  "name": "Material",
+  "fields": [],
+  "relationships": [
+    {
+      "relationshipType": "many-to-many",
+      "otherEntityName": "student",
+      "otherEntityRelationshipName": "material",
+      "relationshipName": "student",
+      "otherEntityField": "id",
+      "ownerSide": true
+    },
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "board",
+      "otherEntityRelationshipName": "material",
+      "relationshipName": "board",
+      "otherEntityField": "id"
+    },
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "sail",
+      "otherEntityRelationshipName": "material",
+      "relationshipName": "sail",
+      "otherEntityField": "id"
+    },
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "tracksuit",
+      "otherEntityRelationshipName": "material",
+      "relationshipName": "tracksuit",
+      "otherEntityField": "id"
+    }
+  ],
+  "changelogDate": "20201110101615",
+  "javadoc": "Material entity gathering equipments for an activity",
+  "entityTableName": "material",
+  "dto": "no",
+  "pagination": "no",
+  "service": "no",
+  "jpaMetamodelFiltering": false,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "clientRootFolder": "",
+  "applications": "*"
+}

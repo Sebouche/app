@@ -1,0 +1,56 @@
+{
+  "name": "SemesterInscription",
+  "fields": [
+    {
+      "fieldName": "noted",
+      "fieldType": "Boolean",
+      "fieldValidateRules": [
+        "required"
+      ]
+    },
+    {
+      "fieldName": "noteMax",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "noteGiven",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "paid",
+      "fieldType": "Boolean",
+      "javadoc": "if the semester is paid by the student",
+      "fieldValidateRules": [
+        "required"
+      ]
+    }
+  ],
+  "relationships": [
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "student",
+      "otherEntityRelationshipName": "semesterInscription",
+      "relationshipName": "student",
+      "otherEntityField": "id"
+    },
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "semester",
+      "otherEntityRelationshipName": "semesterInscription",
+      "relationshipName": "semester",
+      "otherEntityField": "id"
+    }
+  ],
+  "changelogDate": "20201110101415",
+  "javadoc": "Entity association of a student and a semester he paid for",
+  "entityTableName": "semester_inscription",
+  "dto": "no",
+  "pagination": "no",
+  "service": "no",
+  "jpaMetamodelFiltering": false,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "clientRootFolder": "",
+  "applications": "*"
+}

@@ -1,0 +1,57 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+            <h2 id="jhi-material-heading" jhiTranslate="ecomApp.material.home.createOrEditLabel">Create or edit a Material</h2>
+
+            <div>
+                <jhi-alert-error></jhi-alert-error>
+
+                <div class="form-group" [hidden]="!editForm.get('id')!.value">
+                    <label for="id" jhiTranslate="global.field.id">ID</label>
+                    <input type="text" class="form-control" id="id" name="id" formControlName="id" readonly />
+                </div>
+
+                <div class="form-group">
+                    <label jhiTranslate="ecomApp.material.student" for="field_students">Student</label>
+                    <select class="form-control" id="field_students" multiple name="students" formControlName="students">
+                        <option [ngValue]="getSelected(editForm.get('students')!.value, studentOption)" *ngFor="let studentOption of students; trackBy: trackById">{{ studentOption.id }}</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="ecomApp.material.board" for="field_board">Board</label>
+                    <select class="form-control" id="field_board" name="board" formControlName="board">
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="boardOption.id === editForm.get('board')!.value?.id ? editForm.get('board')!.value : boardOption" *ngFor="let boardOption of boards; trackBy: trackById">{{ boardOption.id }}</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="ecomApp.material.sail" for="field_sail">Sail</label>
+                    <select class="form-control" id="field_sail" name="sail" formControlName="sail">
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="sailOption.id === editForm.get('sail')!.value?.id ? editForm.get('sail')!.value : sailOption" *ngFor="let sailOption of sails; trackBy: trackById">{{ sailOption.id }}</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="ecomApp.material.tracksuit" for="field_tracksuit">Tracksuit</label>
+                    <select class="form-control" id="field_tracksuit" name="tracksuit" formControlName="tracksuit">
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="tracksuitOption.id === editForm.get('tracksuit')!.value?.id ? editForm.get('tracksuit')!.value : tracksuitOption" *ngFor="let tracksuitOption of tracksuits; trackBy: trackById">{{ tracksuitOption.id }}</option>
+                    </select>
+                </div>
+            </div>
+
+            <div>
+                <button type="button" id="cancel-save" class="btn btn-secondary" (click)="previousState()">
+                    <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+                </button>
+
+                <button type="submit" id="save-entity" [disabled]="editForm.invalid || isSaving" class="btn btn-primary">
+                    <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

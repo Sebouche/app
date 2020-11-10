@@ -1,0 +1,29 @@
+{
+  "ecomApp": {
+    "studentActivity": {
+      "home": {
+        "title": "Student Activities",
+        "createLabel": "Create a new Student Activity",
+        "createOrEditLabel": "Create or edit a Student Activity",
+        "notFound": "No Student Activities found"
+      },
+      "created": "A new Student Activity is created with identifier {{ param }}",
+      "updated": "A Student Activity is updated with identifier {{ param }}",
+      "deleted": "A Student Activity is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Student Activity {{ id }}?"
+      },
+      "detail": {
+        "title": "Student Activity"
+      },
+      "commentToIntructor": "Comment To Intructor",
+      "commentByInstructor": "Comment By Instructor",
+      "student": "Student",
+      "activity": "Activity",
+      "help": {
+        "commentToIntructor": "Complementary information about the student",
+        "commentByInstructor": "Comment for Student&#39;s eval"
+      }
+    }
+  }
+}

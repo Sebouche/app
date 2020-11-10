@@ -1,0 +1,76 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+            <h2 id="jhi-student-heading" jhiTranslate="ecomApp.student.home.createOrEditLabel">Create or edit a Student</h2>
+
+            <div>
+                <jhi-alert-error></jhi-alert-error>
+
+                <div class="form-group" [hidden]="!editForm.get('id')!.value">
+                    <label for="id" jhiTranslate="global.field.id">ID</label>
+                    <input type="text" class="form-control" id="id" name="id" formControlName="id" readonly />
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="ecomApp.student.sportLevel" for="field_sportLevel">Sport Level</label>
+                    <select class="form-control" name="sportLevel" formControlName="sportLevel" id="field_sportLevel">
+                        <option value="BEGINNER">{{ 'ecomApp.SportLevel.BEGINNER' | translate }}</option>
+                        <option value="BEGINNER2">{{ 'ecomApp.SportLevel.BEGINNER2' | translate }}</option>
+                        <option value="BEGINNERSUP">{{ 'ecomApp.SportLevel.BEGINNERSUP' | translate }}</option>
+                        <option value="PERF">{{ 'ecomApp.SportLevel.PERF' | translate }}</option>
+                        <option value="PERFSUP">{{ 'ecomApp.SportLevel.PERFSUP' | translate }}</option>
+                        <option value="FUN">{{ 'ecomApp.SportLevel.FUN' | translate }}</option>
+                        <option value="FOIL">{{ 'ecomApp.SportLevel.FOIL' | translate }}</option>
+                        <option value="MONITOR">{{ 'ecomApp.SportLevel.MONITOR' | translate }}</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="ecomApp.student.drivingLicence" for="field_drivingLicence">Driving Licence</label>
+                    <input type="checkbox" class="form-control" name="drivingLicence" id="field_drivingLicence"
+                           formControlName="drivingLicence"/>
+                    <div *ngIf="editForm.get('drivingLicence')!.invalid && (editForm.get('drivingLicence')!.dirty || editForm.get('drivingLicence')!.touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('drivingLicence')?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="ecomApp.student.meetingPlace" for="field_meetingPlace" [ngbTooltip]="'ecomApp.student.help.meetingPlace' | translate">Meeting Place</label>
+                    <select class="form-control" name="meetingPlace" formControlName="meetingPlace" id="field_meetingPlace">
+                        <option value="SMH">{{ 'ecomApp.MeetingPlace.SMH' | translate }}</option>
+                        <option value="MINATEC">{{ 'ecomApp.MeetingPlace.MINATEC' | translate }}</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="ecomApp.student.internalUser" for="field_internalUser">Internal User</label>
+                    <select class="form-control" id="field_internalUser" name="internalUser" formControlName="internalUser">
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="userOption.id === editForm.get('internalUser')!.value?.id ? editForm.get('internalUser')!.value : userOption" *ngFor="let userOption of users; trackBy: trackById">{{ userOption.id }}</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="ecomApp.student.cursus" for="field_cursus">Cursus</label>
+                    <select class="form-control" id="field_cursus" name="cursus" formControlName="cursus">
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="cursusOption.id === editForm.get('cursus')!.value?.id ? editForm.get('cursus')!.value : cursusOption" *ngFor="let cursusOption of cursuses; trackBy: trackById">{{ cursusOption.id }}</option>
+                    </select>
+                </div>
+            </div>
+
+            <div>
+                <button type="button" id="cancel-save" class="btn btn-secondary" (click)="previousState()">
+                    <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+                </button>
+
+                <button type="submit" id="save-entity" [disabled]="editForm.invalid || isSaving" class="btn btn-primary">
+                    <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

@@ -1,0 +1,36 @@
+{
+  "ecomApp": {
+    "activity": {
+      "home": {
+        "title": "Activities",
+        "createLabel": "Create a new Activity",
+        "createOrEditLabel": "Create or edit a Activity",
+        "notFound": "No Activities found"
+      },
+      "created": "A new Activity is created with identifier {{ param }}",
+      "updated": "A Activity is updated with identifier {{ param }}",
+      "deleted": "A Activity is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Activity {{ id }}?"
+      },
+      "detail": {
+        "title": "Activity"
+      },
+      "name": "Name",
+      "date": "Date",
+      "place": "Place",
+      "capacity": "Capacity",
+      "inscriptionOpen": "Inscription Open",
+      "coeff": "Coeff",
+      "lake": "Lake",
+      "studentActivity": "Student Activity",
+      "monitors": "Monitors",
+      "managers": "Managers",
+      "help": {
+        "place": "the place the activity takes place in",
+        "capacity": "number of student acceptable",
+        "lake": "the name of lake in particular"
+      }
+    }
+  }
+}

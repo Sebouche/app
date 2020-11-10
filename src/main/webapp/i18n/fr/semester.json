@@ -1,0 +1,24 @@
+{
+  "ecomApp": {
+    "semester": {
+      "home": {
+        "title": "Semesters",
+        "createLabel": "Créer un nouveau Semester",
+        "createOrEditLabel": "Créer ou éditer un Semester",
+        "notFound": "Aucun Semester trouvé"
+      },
+      "created": "Un nouveau Semester a été créé avec l'identifiant {{ param }}",
+      "updated": "Le Semester avec l'identifiant {{ param }} a été mis à jour",
+      "deleted": "Le Semester avec l'identifiant {{ param }} a été supprimé",
+      "delete": {
+        "question": "Etes-vous certain de vouloir supprimer le Semester {{ id }} ?"
+      },
+      "detail": {
+        "title": "Semester"
+      },
+      "startDate": "Start Date",
+      "endDate": "End Date",
+      "semesterInscription": "Semester Inscription"
+    }
+  }
+}

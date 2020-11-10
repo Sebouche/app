@@ -1,0 +1,23 @@
+{
+  "ecomApp": {
+    "cursus": {
+      "home": {
+        "title": "Cursuses",
+        "createLabel": "Create a new Cursus",
+        "createOrEditLabel": "Create or edit a Cursus",
+        "notFound": "No Cursuses found"
+      },
+      "created": "A new Cursus is created with identifier {{ param }}",
+      "updated": "A Cursus is updated with identifier {{ param }}",
+      "deleted": "A Cursus is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Cursus {{ id }}?"
+      },
+      "detail": {
+        "title": "Cursus"
+      },
+      "composant": "Composant",
+      "academicLevel": "Academic Level"
+    }
+  }
+}

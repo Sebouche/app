@@ -1,0 +1,130 @@
+/** Student entity */
+entity Student {
+    sportLevel SportLevel
+    drivingLicence Boolean required
+    meetingPlace MeetingPlace /** the place the student accept to depart to the activities */
+} 
+
+/** Instructor entity */
+entity Instructor
+
+/** Activity entity */
+entity Activity {
+	name String required
+	date LocalDate required
+    place String /** the place the activity takes place in */
+    capacity Integer min(0) /** number of student acceptable */
+    inscriptionOpen Boolean required
+    coeff Float min(0) max(1)
+    lake Lakes /** the name of lake in particular */
+}
+
+/** Entity association of a student and an activity he took */
+entity StudentActivity{
+    commentToIntructor TextBlob /** Complementary information about the student */ 
+    commentByInstructor TextBlob /** Comment for Student's eval */
+}
+
+/** Cursus entity */
+entity Cursus {
+	composant Composant required
+    academicLevel Integer required min(0)
+}
+
+/** Entity association of a student and a semester he paid for */
+entity SemesterInscription {
+    noted Boolean required
+    noteMax Integer
+    noteGiven Integer
+    paid Boolean required /** if the semester is paid by the student */
+}
+
+/** Semester entity */
+entity Semester{
+	startDate LocalDate required
+    endDate LocalDate required
+}
+
+/** Material entity gathering equipments for an activity */
+entity Material
+
+/** Tracksuit entity */
+entity Tracksuit{
+	tracksuitId Integer required
+    name String required
+    sizeMin Integer required min(0)
+    sizeMax Integer required min(0)
+    weightMin Integer required min(0)
+    weightMax Integer required min(0)
+    comment TextBlob
+}
+
+/** Board entity */
+entity Board{
+	boardId String required
+	name String required
+    volume Integer required
+    level SportLevel required
+    usable Boolean required
+    comment TextBlob
+}
+
+/** Sail entity */
+entity Sail{
+	sailId String required
+    name String required
+    area Float required
+    level SportLevel required
+    usable Boolean required
+    comment TextBlob
+}
+
+/** Every composants of a cursus */
+enum Composant {
+    INFO, MAT, PRI, TIS, GGC, E2I, IESE
+}
+
+/** Every sport levels */
+enum SportLevel {
+    BEGINNER, BEGINNER2, BEGINNERSUP, PERF, PERFSUP, FUN, FOIL, MONITOR
+}
+
+/** Every meeting places */
+enum MeetingPlace {
+	SMH, MINATEC
+}
+
+/** Every usable lakes */
+enum Lakes {
+	LAFFREY, MONTEYNARD, MEZE, HYERES, LEUCATE
+}
+
+// =================================
+// Relations
+// =================================
+relationship OneToOne {
+	Student{internalUser} to User
+    Instructor{internalUser} to User
+}
+
+relationship OneToMany {
+	Student to SemesterInscription{student}
+    Semester to SemesterInscription{semester}
+    Student to StudentActivity{student}
+    Activity to StudentActivity{activity}
+    Board to Material{board}
+    Sail to Material{sail}
+    Tracksuit to Material{tracksuit}
+}
+
+relationship ManyToOne {
+	Student{cursus} to Cursus
+}
+
+relationship ManyToMany {
+    // The activities the instructor participate to
+	Instructor{participateActivity} to Activity{monitors}
+    // The activities the instructor can edit (manager rights)
+    Instructor{editableActivity} to Activity{managers}
+    Material{student} to Student{material}
+}

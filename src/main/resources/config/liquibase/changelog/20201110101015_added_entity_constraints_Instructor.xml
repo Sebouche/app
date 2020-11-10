@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.9.xsd">
+    <!--
+        Added the constraints for entity Instructor.
+    -->
+    <changeSet id="20201110101015-2" author="jhipster">
+        
+        <addForeignKeyConstraint baseColumnNames="internal_user_id"
+                                 baseTableName="instructor"
+                                 constraintName="fk_instructor_internal_user_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="jhi_user"/>
+
+        <addForeignKeyConstraint baseColumnNames="instructor_id"
+                                 baseTableName="instructor_participate_activity"
+                                 constraintName="fk_instructor_participate_activity_instructor_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="instructor"/>
+
+        <addForeignKeyConstraint baseColumnNames="participate_activity_id"
+                                 baseTableName="instructor_participate_activity"
+                                 constraintName="fk_instructor_participate_activity_participate_activity_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="activity"/>
+        
+        <addForeignKeyConstraint baseColumnNames="instructor_id"
+                                 baseTableName="instructor_editable_activity"
+                                 constraintName="fk_instructor_editable_activity_instructor_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="instructor"/>
+
+        <addForeignKeyConstraint baseColumnNames="editable_activity_id"
+                                 baseTableName="instructor_editable_activity"
+                                 constraintName="fk_instructor_editable_activity_editable_activity_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="activity"/>
+        
+    </changeSet>
+</databaseChangeLog>

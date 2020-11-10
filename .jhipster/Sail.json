@@ -1,0 +1,66 @@
+{
+  "name": "Sail",
+  "fields": [
+    {
+      "fieldName": "sailId",
+      "fieldType": "String",
+      "fieldValidateRules": [
+        "required"
+      ]
+    },
+    {
+      "fieldName": "name",
+      "fieldType": "String",
+      "fieldValidateRules": [
+        "required"
+      ]
+    },
+    {
+      "fieldName": "area",
+      "fieldType": "Float",
+      "fieldValidateRules": [
+        "required"
+      ]
+    },
+    {
+      "fieldName": "level",
+      "fieldType": "SportLevel",
+      "fieldValues": "BEGINNER,BEGINNER2,BEGINNERSUP,PERF,PERFSUP,FUN,FOIL,MONITOR",
+      "fieldValidateRules": [
+        "required"
+      ]
+    },
+    {
+      "fieldName": "usable",
+      "fieldType": "Boolean",
+      "fieldValidateRules": [
+        "required"
+      ]
+    },
+    {
+      "fieldName": "comment",
+      "fieldType": "byte[]",
+      "fieldTypeBlobContent": "text"
+    }
+  ],
+  "relationships": [
+    {
+      "relationshipType": "one-to-many",
+      "otherEntityName": "material",
+      "otherEntityRelationshipName": "sail",
+      "relationshipName": "material"
+    }
+  ],
+  "changelogDate": "20201110101915",
+  "javadoc": "Sail entity",
+  "entityTableName": "sail",
+  "dto": "no",
+  "pagination": "no",
+  "service": "no",
+  "jpaMetamodelFiltering": false,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "clientRootFolder": "",
+  "applications": "*"
+}

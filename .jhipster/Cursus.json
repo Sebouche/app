@@ -1,0 +1,35 @@
+{
+  "name": "Cursus",
+  "fields": [
+    {
+      "fieldName": "composant",
+      "fieldType": "Composant",
+      "fieldValues": "INFO,MAT,PRI,TIS,GGC,E2I,IESE",
+      "fieldValidateRules": [
+        "required"
+      ]
+    },
+    {
+      "fieldName": "academicLevel",
+      "fieldType": "Integer",
+      "fieldValidateRules": [
+        "required",
+        "min"
+      ],
+      "fieldValidateRulesMin": "0"
+    }
+  ],
+  "relationships": [],
+  "changelogDate": "20201110101315",
+  "javadoc": "Cursus entity",
+  "entityTableName": "cursus",
+  "dto": "no",
+  "pagination": "no",
+  "service": "no",
+  "jpaMetamodelFiltering": false,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "clientRootFolder": "",
+  "applications": "*"
+}

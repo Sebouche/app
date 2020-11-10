@@ -1,0 +1,54 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="activity">
+            <h2><span jhiTranslate="ecomApp.activity.detail.title">Activity</span> {{ activity.id }}</h2>
+
+            <hr>
+
+            <jhi-alert-error></jhi-alert-error>
+
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="ecomApp.activity.name">Name</span></dt>
+                <dd>
+                    <span>{{ activity.name }}</span>
+                </dd>
+                <dt><span jhiTranslate="ecomApp.activity.date">Date</span></dt>
+                <dd>
+                    <span>{{ activity.date }}</span>
+                </dd>
+                <dt><span jhiTranslate="ecomApp.activity.place" [ngbTooltip]="'ecomApp.activity.help.place' | translate">Place</span></dt>
+                <dd>
+                    <span>{{ activity.place }}</span>
+                </dd>
+                <dt><span jhiTranslate="ecomApp.activity.capacity" [ngbTooltip]="'ecomApp.activity.help.capacity' | translate">Capacity</span></dt>
+                <dd>
+                    <span>{{ activity.capacity }}</span>
+                </dd>
+                <dt><span jhiTranslate="ecomApp.activity.inscriptionOpen">Inscription Open</span></dt>
+                <dd>
+                    <span>{{ activity.inscriptionOpen }}</span>
+                </dd>
+                <dt><span jhiTranslate="ecomApp.activity.coeff">Coeff</span></dt>
+                <dd>
+                    <span>{{ activity.coeff }}</span>
+                </dd>
+                <dt><span jhiTranslate="ecomApp.activity.lake" [ngbTooltip]="'ecomApp.activity.help.lake' | translate">Lake</span></dt>
+                <dd>
+                    <span jhiTranslate="{{ 'ecomApp.Lakes.' + activity.lake }}">{{ activity.lake }}</span>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/activity', activity.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+            </button>
+        </div>
+    </div>
+</div>
