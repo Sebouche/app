@@ -2,13 +2,18 @@ package fr.uga.service;
 
 import fr.uga.config.Constants;
 import fr.uga.domain.Authority;
+import fr.uga.domain.Cursus;
+import fr.uga.domain.Student;
 import fr.uga.domain.User;
 import fr.uga.repository.AuthorityRepository;
+import fr.uga.repository.CursusRepository;
+import fr.uga.repository.StudentRepository;
 import fr.uga.repository.UserRepository;
 import fr.uga.security.AuthoritiesConstants;
 import fr.uga.security.SecurityUtils;
 import fr.uga.service.dto.UserDTO;
-
+import fr.uga.web.rest.CursusResource;
+import fr.uga.web.rest.vm.ManagedUserVM;
 import io.github.jhipster.security.RandomUtil;
 
 import org.slf4j.Logger;
@@ -26,12 +31,17 @@ import java.time.temporal.ChronoUnit;
 import java.util.*;
 import java.util.stream.Collectors;
 
+import javax.annotation.Resource;
+import javax.inject.Inject;
+
 /**
  * Service class for managing users.
  */
 @Service
 @Transactional
 public class UserService {
+	
+	private final static boolean FRONT_IS_LIVE = false;
 
     private final Logger log = LoggerFactory.getLogger(UserService.class);
 
@@ -42,6 +52,15 @@ public class UserService {
     private final AuthorityRepository authorityRepository;
 
     private final CacheManager cacheManager;
+    
+    @Inject
+    private StudentRepository studentRepository;
+    
+    @Inject
+    private CursusRepository cursusRepository;
+    
+    @Resource
+    private CursusResource cursusResource;
 
     public UserService(UserRepository userRepository, PasswordEncoder passwordEncoder, AuthorityRepository authorityRepository, CacheManager cacheManager) {
         this.userRepository = userRepository;
@@ -121,7 +140,37 @@ public class UserService {
         newUser.setAuthorities(authorities);
         userRepository.save(newUser);
         this.clearUserCaches(newUser);
-        log.debug("Created Information for User: {}", newUser);
+        log.debug("Created Information for Student: {}", newUser);
+        
+        if(FRONT_IS_LIVE) {
+        	ManagedUserVM studentDTO = (ManagedUserVM) userDTO;
+        	
+        	List<Cursus> cursusList = cursusResource.getAllCursuses();
+        	Optional<Cursus> existingCursus = cursusList.stream()
+        			.filter(cu -> cu.getComposant().equals(studentDTO.getComposant()) && cu.getAcademicLevel().equals(studentDTO.getAcademicLevel()))
+        			.findAny();
+        	Cursus newUserCursus;
+        	if (existingCursus.isEmpty()) {
+        		newUserCursus = new Cursus();
+        		newUserCursus.setAcademicLevel(studentDTO.getAcademicLevel());
+        		newUserCursus.setComposant(studentDTO.getComposant());
+        		cursusRepository.save(newUserCursus);
+        		log.debug("Created New Cursus Instance: {}", newUserCursus);
+        	} else {
+        		newUserCursus = existingCursus.get();
+        	}
+        	
+        	// Create and save the Student entity
+        	Student newStudent = new Student();
+        	newStudent.setInternalUser(newUser);
+        	newStudent.setDrivingLicence(studentDTO.isDrivingLicence());
+        	newStudent.setSportLevel(studentDTO.getSportLevel());
+        	newStudent.setMeetingPlace(studentDTO.getMeetingPlace());
+        	newStudent.setCursus(newUserCursus);
+        	studentRepository.save(newStudent);
+        	log.debug("Created Information for Student: {}", newStudent);
+        }
+        
         return newUser;
     }
 
