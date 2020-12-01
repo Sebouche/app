@@ -5,12 +5,6 @@
       "button": "Enregistrement"
     },
     "messages": {
-      "info": {
-        "studentinformations": {
-          "header": "Informations de l'étudiant",
-          "text": "Les informations suivantes pourront être entrées ou changées plus tard."
-        }
-      },
       "validate": {
         "login": {
           "required": "Votre nom d'utilisateur est obligatoire.",
