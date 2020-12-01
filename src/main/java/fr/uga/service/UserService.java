@@ -61,9 +61,6 @@ public class UserService {
     
     @Inject
     private CursusRepository cursusRepository;
-    
-    @Resource
-    private CursusResource cursusResource;
 
     public UserService(UserRepository userRepository, PasswordEncoder passwordEncoder, AuthorityRepository authorityRepository, CacheManager cacheManager) {
         this.userRepository = userRepository;
@@ -186,7 +183,7 @@ public class UserService {
         
         if(FRONT_IS_LIVE) {
         	
-        	List<Cursus> cursusList = cursusResource.getAllCursuses();
+        	List<Cursus> cursusList = cursusRepository.findAll();
         	Optional<Cursus> existingCursus = cursusList.stream()
         			.filter(cu -> cu.getComposant().equals(composant) && cu.getAcademicLevel().equals(academicLevel))
         			.findAny();
