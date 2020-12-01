@@ -1,0 +1,11 @@
+language: java
+jdk:
+- oraclejdk11
+addons:
+  sonarcloud:
+    organization: "2020-2021-ecom-info5-g6"
+    token:
+      secure: "B3KSX+1YcFORP/I7kh2yK27G0CpIeLcvyHAFmdybQt1bzpRwoys320eXMfMp625XIWmWzX49krwlrc8mQtcLKB7gmOgbTeLg8fgsXUTpNyakQoMefXcEby7JfeumHtnHWF64udb2zsBaMXPxqlmAg8OxzWcHId15UerRdJ4FK6x9P9E47W/Me9h+g9fAQ7QRvkeBx3QDbdzK+teHCkiTCjkxSNb6CAtJLb1nrUkPMU3wTqIWDhdN91uILOoJ8LPjONE073sTkXQTUkr6qQrK68LYQhbFqv1dT0oiA5KXCmKrjzl99Zr4ru5K+iUudX6317ac7U1hgP7ndqGUm7EVjNsv2Dq7z0Xc05v9jesVwVGyt2sb1OlLpP+SY4ZJzOgZA4rnB44WRDIFz0q3fQB3Amz1McWd1tbWZU3tM54uXW47UYOK8DG9Qkx5asI20me5Z7YU/tFadERfQ5oK3k6roNAw7SMJDXeWX5Oy7RDfF9by31KzHovne4uPOZNp8pSxjC9oDF6/k2aKr9i/0xSsTFEx3xAJR/4SQ8tvaSjwQkIvAXifGJxVpK5whPIX34y6UacJF2s/oU+y3XuatGjyErtHTygHyBOEj7gOcYRpblccVQk/uDHsw5xflAlS045AUPXKVsXb6qLN23k1vC/qR4RfnR7OfSpE7Pi/7Drczc8="
+script:
+  # the following command line builds the project, runs the tests with coverage and then execute the SonarCloud analysis
+  - mvn clean org.jacoco:jacoco-maven-plugin:prepare-agent install sonar:sonar -Dsonar.projectKey=2020-2021-ECOM-INFO5-G6_app -Dsonar.login=${SONAR_TOKEN}
