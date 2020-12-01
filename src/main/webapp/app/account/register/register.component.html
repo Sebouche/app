@@ -157,7 +157,7 @@
 
                 <div class="form-group" style="width:55%; margin-right:2%; float:left;">
                     <label class="form-control-label" for="cursus" jhiTranslate="global.form.cursus.composant">Cursus</label>
-                    <select class="form-control" id="cursusComposant" name="cursusComposant" formControlName="cursusComposant">
+                    <select class="form-control" id="cursusComposant" name="cursusComposant" formControlName="cursusComposant" ng-model="vm.registerAccount.composant">
                         <option value="INFO">{{ 'ecomApp.Composant.INFO' | translate }}</option>
                         <option value="MAT">{{ 'ecomApp.Composant.MAT' | translate }}</option>
                         <option value="PRI">{{ 'ecomApp.Composant.PRI' | translate }}</option>
@@ -171,7 +171,7 @@
                 <div class="form-group" style="width:42%; float:left;">
                     <label class="form-control-label" jhiTranslate="global.form.cursus.level" for="cursusLevel">Academic Level</label>
                     <input type="number" class="form-control" name="cursusLevel" id="cursusLevel"
-                           formControlName="cursusLevel"/>
+                           formControlName="cursusLevel" ng-model="vm.registerAccount.academicLevel"/>
                     
                     <div *ngIf="registerForm.get('cursusLevel')!.invalid && (registerForm.get('cursusLevel')!.dirty || registerForm.get('cursusLevel')!.touched)">
                         <small class="form-text text-danger"
@@ -184,7 +184,7 @@
 
                 <div class="form-group">
                     <label class="form-control-label" jhiTranslate="global.form.sportLevel.label" for="sportLevel">Sport Level</label>
-                    <select class="form-control" name="sportLevel" formControlName="sportLevel" id="sportLevel">
+                    <select class="form-control" name="sportLevel" formControlName="sportLevel" id="sportLevel" ng-model="vm.registerAccount.sportLevel">
                         <option value="BEGINNER">{{ 'ecomApp.SportLevel.BEGINNER' | translate }}</option>
                         <option value="BEGINNER2">{{ 'ecomApp.SportLevel.BEGINNER2' | translate }}</option>
                         <option value="BEGINNERSUP">{{ 'ecomApp.SportLevel.BEGINNERSUP' | translate }}</option>
@@ -198,12 +198,12 @@
 
                 <div>
                     <input type="checkbox" id="drivinglicence" name="drivinglicence">
-                    <label class="form-control-label" jhiTranslate="global.form.drivingLicence.label" for="drivingLicence">Sport Level</label>
+                    <label class="form-control-label" jhiTranslate="global.form.drivingLicence.label" for="drivingLicence" ng-model="vm.registerAccount.drivingLicence">Driving Licence</label>
                 </div>
 
                 <div>
                     <label class="form-control-label" jhiTranslate="global.form.meetingPlace.label" for="meetingPlace">Meeting Place</label>
-                    <select class="form-control" name="meetingPlace" formControlName="meetingPlace" id="meetingPlace">
+                    <select class="form-control" name="meetingPlace" formControlName="meetingPlace" id="meetingPlace" ng-model="vm.registerAccount.meetingPlace">
                         <option value="SMH">{{ 'ecomApp.MeetingPlace.SMH' | translate }}</option>
                         <option value="MINATEC">{{ 'ecomApp.MeetingPlace.MINATEC' | translate }}</option>
                     </select>
