@@ -65,7 +65,7 @@ public class AccountResource {
         }
         User user = userService.createUser(managedUserVM.getLogin(), managedUserVM.getPassword(), 
         		managedUserVM.getFirstName(), managedUserVM.getLastName(), managedUserVM.getEmail().toLowerCase(),
-        		managedUserVM.getLangKey(), managedUserVM.getComposant(), managedUserVM.getAcademicLevel(), managedUserVM.isDrivingLicence(),
+        		managedUserVM.getLangKey(), managedUserVM.getCursusComposant(), managedUserVM.getCursusLevel(), managedUserVM.isDrivingLicence(),
         		managedUserVM.getSportLevel(), managedUserVM.getMeetingPlace());
         mailService.sendActivationEmail(user);
     }

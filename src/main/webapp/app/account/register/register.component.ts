@@ -67,17 +67,29 @@ export class RegisterComponent implements AfterViewInit {
       const login = this.registerForm.get(['login'])!.value;
       const email = this.registerForm.get(['email'])!.value;
 
-      // Get extra information for registration
-      // const cursusComposant = this.registerForm.get(['cursusComposant'])!.value;
-      // const cursusLevel = this.registerForm.get(['cursusLevel'])!.value;
-      // const sportLevel = this.registerForm.get(['sportLevel'])!.value;
-      // const drivingLicence = this.registerForm.get(['drivingLicence'])!.value;
-      // const meetingPlace = this.registerForm.get(['meetingPlace'])!.value;
+      //Get extra information for registration
+      const cursusComposant = this.registerForm.get(['cursusComposant'])!.value;
+      const cursusLevel = this.registerForm.get(['cursusLevel'])!.value;
+      const sportLevel = this.registerForm.get(['sportLevel'])!.value;
+      const drivingLicence = this.registerForm.get(['drivingLicence'])!.value;
+      const meetingPlace = this.registerForm.get(['meetingPlace'])!.value;
 
-      this.registerService.save({ login, email, password, langKey: this.languageService.getCurrentLanguage() }).subscribe(
-        () => (this.success = true),
-        response => this.processError(response)
-      );
+      this.registerService
+        .saveExtra({
+          login,
+          email,
+          password,
+          langKey: this.languageService.getCurrentLanguage(),
+          cursusComposant,
+          cursusLevel,
+          sportLevel,
+          drivingLicence,
+          meetingPlace,
+        })
+        .subscribe(
+          () => (this.success = true),
+          response => this.processError(response)
+        );
     }
   }
 

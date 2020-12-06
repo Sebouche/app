@@ -1,6 +1,5 @@
 package fr.uga.web.rest.vm;
 
-import fr.uga.domain.Cursus;
 import fr.uga.domain.enumeration.Composant;
 import fr.uga.domain.enumeration.MeetingPlace;
 import fr.uga.domain.enumeration.SportLevel;
@@ -27,11 +26,9 @@ public class ManagedUserVM extends UserDTO {
     
     private MeetingPlace meetingPlace;
     
-    private Cursus cursus;
+    private Composant cursusComposant;
     
-    private Composant composant;
-    
-    private int academicLevel;
+    private int cursusLevel;
     
     // no FirstName or LastName because it's arleady defined in extending class userDTO
 
@@ -71,28 +68,20 @@ public class ManagedUserVM extends UserDTO {
 		this.meetingPlace = meetingPlace;
 	}
 
-	public Cursus getCursus() {
-		return cursus;
+	public Composant getCursusComposant() {
+		return cursusComposant;
 	}
 
-	public void setCursus(Cursus cursus) {
-		this.cursus = cursus;
+	public void setCursusComposant(Composant composant) {
+		this.cursusComposant = composant;
 	}
 
-	public Composant getComposant() {
-		return composant;
+	public int getCursusLevel() {
+		return cursusLevel;
 	}
 
-	public void setComposant(Composant composant) {
-		this.composant = composant;
-	}
-
-	public int getAcademicLevel() {
-		return academicLevel;
-	}
-
-	public void setAcademicLevel(int academicLevel) {
-		this.academicLevel = academicLevel;
+	public void setCursusLevel(int academicLevel) {
+		this.cursusLevel = academicLevel;
 	}
 
 	public String getPassword() {
