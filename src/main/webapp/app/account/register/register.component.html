@@ -196,12 +196,12 @@
                     </select>
                 </div>
 
-                <div>
-                    <input type="checkbox" id="drivinglicence" name="drivinglicence" >
+                <div class="form-group">
+                    <input formControlName="drivingLicence" type="checkbox" id="drivingLicence" name="drivingLicence" >
                     <label class="form-control-label" jhiTranslate="global.form.drivingLicence.label" for="drivingLicence" >Driving Licence</label>
                 </div>
 
-                <div>
+                <div class="form-group"> 
                     <label class="form-control-label" jhiTranslate="global.form.meetingPlace.label" for="meetingPlace">Meeting Place</label>
                     <select class="form-control" name="meetingPlace" formControlName="meetingPlace" id="meetingPlace" >
                         <option value="SMH">{{ 'ecomApp.MeetingPlace.SMH' | translate }}</option>
