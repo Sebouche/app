@@ -183,11 +183,15 @@ public class UserService {
         Optional<Cursus> existingCursus = cursusList.stream()
         		.filter(cu -> cu.getComposant().equals(composant) && cu.getAcademicLevel().equals(academicLevel))
         		.findAny();
-        Cursus newUserCursus;
+        Cursus newUserCursus = null;
         if (existingCursus.isEmpty()) {
-        	newUserCursus = new Cursus();
-        	newUserCursus.setAcademicLevel(academicLevel);
-        	newUserCursus.setComposant(composant);
+            newUserCursus = new Cursus();
+            newUserCursus.setAcademicLevel(academicLevel);
+            if (composant != null){
+        	    newUserCursus.setComposant(composant);
+            } else {
+                newUserCursus.setComposant(Composant.INFO);
+            }
         	cursusRepository.save(newUserCursus);
         	log.debug("Created New Cursus Instance: {}", newUserCursus);
         } else {
