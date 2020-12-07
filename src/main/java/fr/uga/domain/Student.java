@@ -49,7 +49,7 @@ public class Student implements Serializable {
     @Column(name = "meeting_place")
     private MeetingPlace meetingPlace;
 
-    @OneToOne
+    @OneToOne()
     @JoinColumn(unique = true)
     private User internalUser;
 
