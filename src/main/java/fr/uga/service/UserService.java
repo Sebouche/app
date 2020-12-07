@@ -222,7 +222,7 @@ public class UserService {
         while (iter.hasNext()){
             currentStudent = iter.next();
 
-            if (currentStudent.getInternalUser() != null && currentStudent.getInternalUser().getId() == existingUser.getId()){
+            if (currentStudent.getInternalUser() != null && currentStudent.getInternalUser().getId().equals(existingUser.getId())){
                 studentRepository.delete(currentStudent);
             }
         }
@@ -385,7 +385,7 @@ public class UserService {
                 while (iter.hasNext()){
                     currentStudent = iter.next();
 
-                    if (currentStudent.getInternalUser() != null && currentStudent.getInternalUser().getId() == user.getId()){
+                    if (currentStudent.getInternalUser() != null && currentStudent.getInternalUser().getId().equals(user.getId())){
                         studentRepository.delete(currentStudent);
                     }
                 }
