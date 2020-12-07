@@ -5,7 +5,10 @@ import './vendor';
 import { EcomSharedModule } from 'app/shared/shared.module';
 import { EcomCoreModule } from 'app/core/core.module';
 import { EcomAppRoutingModule } from './app-routing.module';
-import { EcomHomeModule } from './home/home.module';
+// Homes
+import { EcomHomeStudentModule } from './homeStudent/homeStudent.module';
+import { EcomHomeInstructorModule } from './homeInstructor/homeInstructor.module';
+// Entities
 import { EcomEntityModule } from './entities/entity.module';
 // jhipster-needle-angular-add-module-import JHipster will add new module here
 import { MainComponent } from './layouts/main/main.component';
@@ -20,7 +23,9 @@ import { ErrorComponent } from './layouts/error/error.component';
     BrowserModule,
     EcomSharedModule,
     EcomCoreModule,
-    EcomHomeModule,
+    // Homes
+    EcomHomeStudentModule,
+    EcomHomeInstructorModule,
     // jhipster-needle-angular-add-module JHipster will add new module here
     EcomEntityModule,
     EcomAppRoutingModule,
