@@ -5,6 +5,7 @@
       "password": "Mot de passe",
       "password.placeholder": "Votre mot de passe",
       "rememberme": "Garder la session ouverte",
+      "isInstructor": "Etes-vous un instructeur ?",
       "button": "Connexion"
     },
     "messages": {
