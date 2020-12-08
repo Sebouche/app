@@ -54,23 +54,14 @@
       "confirmpassword.label": "New password confirmation",
       "confirmpassword.placeholder": "Confirm the new password",
       "email.label": "Email",
-      "email.placeholder": "Your email",
-      "cursus": {
-        "composant": "Composant",
-        "level": "Academic level"
-      },
-      "sportLevel.label": "Sport Level",
-      "sportLevel.placeholder": "Your sport level",
-      "drivingLicence.label": "Driving licence",
-      "meetingPlace.label": "Meeting place",
-      "meetingPlace.placeholder": "Your favorite meeting place"
+      "email.placeholder": "Your email"
     },
     "messages": {
       "info": {
         "authenticated": {
-          "prefix": "If you already have an account, ",
-          "link": "sign in.",
-          "suffix": ""
+          "prefix": "If you want to ",
+          "link": "sign in",
+          "suffix": ", you can try the default accounts:<br/>- Administrator (login=\"admin\" and password=\"admin\") <br/>- User (login=\"user\" and password=\"user\")."
         },
         "register": {
           "noaccount": "You don't have an account yet?",
@@ -97,9 +88,6 @@
           "invalid": "Your email is invalid.",
           "minlength": "Your email is required to be at least 5 characters.",
           "maxlength": "Your email cannot be longer than 50 characters."
-        },
-        "sportLevel": {
-          "min": "Your academic level must be positive."
         }
       }
     },
