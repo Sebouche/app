@@ -7,10 +7,10 @@ import { Account } from 'app/core/user/account.model';
 
 @Component({
   selector: 'jhi-home',
-  templateUrl: './home.component.html',
-  styleUrls: ['home.scss'],
+  templateUrl: './login.component.html',
+  styleUrls: ['login.scss'],
 })
-export class HomeComponent implements OnInit, OnDestroy {
+export class LoginComponent implements OnInit, OnDestroy {
   account: Account | null = null;
   authSubscription?: Subscription;
 
