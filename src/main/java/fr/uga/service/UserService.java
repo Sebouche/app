@@ -2,13 +2,21 @@ package fr.uga.service;
 
 import fr.uga.config.Constants;
 import fr.uga.domain.Authority;
+import fr.uga.domain.Cursus;
+import fr.uga.domain.Student;
 import fr.uga.domain.User;
+import fr.uga.domain.enumeration.Composant;
+import fr.uga.domain.enumeration.MeetingPlace;
+import fr.uga.domain.enumeration.SportLevel;
 import fr.uga.repository.AuthorityRepository;
+import fr.uga.repository.CursusRepository;
+import fr.uga.repository.StudentRepository;
 import fr.uga.repository.UserRepository;
 import fr.uga.security.AuthoritiesConstants;
 import fr.uga.security.SecurityUtils;
 import fr.uga.service.dto.UserDTO;
-
+import fr.uga.web.rest.CursusResource;
+import fr.uga.web.rest.vm.ManagedUserVM;
 import io.github.jhipster.security.RandomUtil;
 
 import org.slf4j.Logger;
@@ -26,6 +34,9 @@ import java.time.temporal.ChronoUnit;
 import java.util.*;
 import java.util.stream.Collectors;
 
+import javax.annotation.Resource;
+import javax.inject.Inject;
+
 /**
  * Service class for managing users.
  */
@@ -42,6 +53,12 @@ public class UserService {
     private final AuthorityRepository authorityRepository;
 
     private final CacheManager cacheManager;
+    
+    @Inject
+    private StudentRepository studentRepository;
+    
+    @Inject
+    private CursusRepository cursusRepository;
 
     public UserService(UserRepository userRepository, PasswordEncoder passwordEncoder, AuthorityRepository authorityRepository, CacheManager cacheManager) {
         this.userRepository = userRepository;
@@ -121,7 +138,76 @@ public class UserService {
         newUser.setAuthorities(authorities);
         userRepository.save(newUser);
         this.clearUserCaches(newUser);
-        log.debug("Created Information for User: {}", newUser);
+        log.debug("Created Information for Student: {}", newUser);
+        
+        return newUser;
+    }
+    
+    public User createUser(String login, String password, String firstName, String lastName, String email,
+            String langKey, Composant composant, int academicLevel, boolean hasDrivingLicence, SportLevel sportLevel, MeetingPlace meetingPlace) {
+    	userRepository.findOneByLogin(login.toLowerCase()).ifPresent(existingUser -> {
+            boolean removed = removeNonActivatedUser(existingUser);
+            if (!removed) {
+                throw new UsernameAlreadyUsedException();
+            }
+        });
+        userRepository.findOneByEmailIgnoreCase(email).ifPresent(existingUser -> {
+            boolean removed = removeNonActivatedUser(existingUser);
+            if (!removed) {
+                throw new EmailAlreadyUsedException();
+            }
+        });
+        User newUser = new User();
+        String encryptedPassword = passwordEncoder.encode(password);
+        newUser.setLogin(login.toLowerCase());
+        // new user gets initially a generated password
+        newUser.setPassword(encryptedPassword);
+        newUser.setFirstName(firstName);
+        newUser.setLastName(lastName);
+        if (email != null) {
+            newUser.setEmail(email.toLowerCase());
+        }
+        newUser.setLangKey(langKey);
+        // new user is not active
+        newUser.setActivated(false);
+        // new user gets registration key
+        newUser.setActivationKey(RandomUtil.generateActivationKey());
+        Set<Authority> authorities = new HashSet<>();
+        authorityRepository.findById(AuthoritiesConstants.USER).ifPresent(authorities::add);
+        newUser.setAuthorities(authorities);
+        userRepository.save(newUser);
+        this.clearUserCaches(newUser);
+        log.debug("Created Information for Student: {}", newUser);
+        
+        List<Cursus> cursusList = cursusRepository.findAll();
+        Optional<Cursus> existingCursus = cursusList.stream()
+        		.filter(cu -> cu.getComposant().equals(composant) && cu.getAcademicLevel().equals(academicLevel))
+        		.findAny();
+        Cursus newUserCursus = null;
+        if (existingCursus.isEmpty()) {
+            newUserCursus = new Cursus();
+            newUserCursus.setAcademicLevel(academicLevel);
+            if (composant != null){
+        	    newUserCursus.setComposant(composant);
+            } else {
+                newUserCursus.setComposant(Composant.INFO);
+            }
+        	cursusRepository.save(newUserCursus);
+        	log.debug("Created New Cursus Instance: {}", newUserCursus);
+        } else {
+        	newUserCursus = existingCursus.get();
+        }
+        	
+        // Create and save the Student entity
+        Student newStudent = new Student();
+        newStudent.setInternalUser(newUser);
+        newStudent.setDrivingLicence(hasDrivingLicence);
+        newStudent.setSportLevel(sportLevel);
+        newStudent.setMeetingPlace(meetingPlace);
+        newStudent.setCursus(newUserCursus);
+        studentRepository.save(newStudent);
+        log.debug("Created Information for Student: {}", newStudent);
+        
         return newUser;
     }
 
@@ -129,6 +215,18 @@ public class UserService {
         if (existingUser.getActivated()) {
              return false;
         }
+
+        List<Student> studentList = studentRepository.findAll();
+        Iterator<Student> iter = studentList.iterator();
+        Student currentStudent;
+        while (iter.hasNext()){
+            currentStudent = iter.next();
+
+            if (currentStudent.getInternalUser() != null && currentStudent.getInternalUser().getId().equals(existingUser.getId())){
+                studentRepository.delete(currentStudent);
+            }
+        }
+                
         userRepository.delete(existingUser);
         userRepository.flush();
         this.clearUserCaches(existingUser);
@@ -280,6 +378,18 @@ public class UserService {
             .findAllByActivatedIsFalseAndActivationKeyIsNotNullAndCreatedDateBefore(Instant.now().minus(3, ChronoUnit.DAYS))
             .forEach(user -> {
                 log.debug("Deleting not activated user {}", user.getLogin());
+
+                List<Student> studentList = studentRepository.findAll();
+                Iterator<Student> iter = studentList.iterator();
+                Student currentStudent;
+                while (iter.hasNext()){
+                    currentStudent = iter.next();
+
+                    if (currentStudent.getInternalUser() != null && currentStudent.getInternalUser().getId().equals(user.getId())){
+                        studentRepository.delete(currentStudent);
+                    }
+                }
+
                 userRepository.delete(user);
                 this.clearUserCaches(user);
             });
