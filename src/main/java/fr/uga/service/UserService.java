@@ -43,8 +43,6 @@ import javax.inject.Inject;
 @Service
 @Transactional
 public class UserService {
-	
-	private final static boolean FRONT_IS_LIVE = false;
 
     private final Logger log = LoggerFactory.getLogger(UserService.class);
 
@@ -181,33 +179,34 @@ public class UserService {
         this.clearUserCaches(newUser);
         log.debug("Created Information for Student: {}", newUser);
         
-        if(FRONT_IS_LIVE) {
-        	
-        	List<Cursus> cursusList = cursusRepository.findAll();
-        	Optional<Cursus> existingCursus = cursusList.stream()
-        			.filter(cu -> cu.getComposant().equals(composant) && cu.getAcademicLevel().equals(academicLevel))
-        			.findAny();
-        	Cursus newUserCursus;
-        	if (existingCursus.isEmpty()) {
-        		newUserCursus = new Cursus();
-        		newUserCursus.setAcademicLevel(academicLevel);
-        		newUserCursus.setComposant(composant);
-        		cursusRepository.save(newUserCursus);
-        		log.debug("Created New Cursus Instance: {}", newUserCursus);
-        	} else {
-        		newUserCursus = existingCursus.get();
-        	}
-        	
-        	// Create and save the Student entity
-        	Student newStudent = new Student();
-        	newStudent.setInternalUser(newUser);
-        	newStudent.setDrivingLicence(hasDrivingLicence);
-        	newStudent.setSportLevel(sportLevel);
-        	newStudent.setMeetingPlace(meetingPlace);
-        	newStudent.setCursus(newUserCursus);
-        	studentRepository.save(newStudent);
-        	log.debug("Created Information for Student: {}", newStudent);
+        List<Cursus> cursusList = cursusRepository.findAll();
+        Optional<Cursus> existingCursus = cursusList.stream()
+        		.filter(cu -> cu.getComposant().equals(composant) && cu.getAcademicLevel().equals(academicLevel))
+        		.findAny();
+        Cursus newUserCursus = null;
+        if (existingCursus.isEmpty()) {
+            newUserCursus = new Cursus();
+            newUserCursus.setAcademicLevel(academicLevel);
+            if (composant != null){
+        	    newUserCursus.setComposant(composant);
+            } else {
+                newUserCursus.setComposant(Composant.INFO);
+            }
+        	cursusRepository.save(newUserCursus);
+        	log.debug("Created New Cursus Instance: {}", newUserCursus);
+        } else {
+        	newUserCursus = existingCursus.get();
         }
+        	
+        // Create and save the Student entity
+        Student newStudent = new Student();
+        newStudent.setInternalUser(newUser);
+        newStudent.setDrivingLicence(hasDrivingLicence);
+        newStudent.setSportLevel(sportLevel);
+        newStudent.setMeetingPlace(meetingPlace);
+        newStudent.setCursus(newUserCursus);
+        studentRepository.save(newStudent);
+        log.debug("Created Information for Student: {}", newStudent);
         
         return newUser;
     }
@@ -216,6 +215,18 @@ public class UserService {
         if (existingUser.getActivated()) {
              return false;
         }
+
+        List<Student> studentList = studentRepository.findAll();
+        Iterator<Student> iter = studentList.iterator();
+        Student currentStudent;
+        while (iter.hasNext()){
+            currentStudent = iter.next();
+
+            if (currentStudent.getInternalUser() != null && currentStudent.getInternalUser().getId().equals(existingUser.getId())){
+                studentRepository.delete(currentStudent);
+            }
+        }
+                
         userRepository.delete(existingUser);
         userRepository.flush();
         this.clearUserCaches(existingUser);
@@ -367,6 +378,18 @@ public class UserService {
             .findAllByActivatedIsFalseAndActivationKeyIsNotNullAndCreatedDateBefore(Instant.now().minus(3, ChronoUnit.DAYS))
             .forEach(user -> {
                 log.debug("Deleting not activated user {}", user.getLogin());
+
+                List<Student> studentList = studentRepository.findAll();
+                Iterator<Student> iter = studentList.iterator();
+                Student currentStudent;
+                while (iter.hasNext()){
+                    currentStudent = iter.next();
+
+                    if (currentStudent.getInternalUser() != null && currentStudent.getInternalUser().getId().equals(user.getId())){
+                        studentRepository.delete(currentStudent);
+                    }
+                }
+
                 userRepository.delete(user);
                 this.clearUserCaches(user);
             });

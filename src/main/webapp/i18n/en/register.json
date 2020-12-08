@@ -5,6 +5,12 @@
       "button": "Register"
     },
     "messages": {
+      "info": {
+        "studentinformations": {
+          "header": "Student's information",
+          "text": "The following information might be entered or changed later."
+        }
+      },
       "validate": {
         "login": {
           "required": "Your username is required.",
