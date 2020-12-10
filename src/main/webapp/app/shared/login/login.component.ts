@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { LocalStorageService } from 'ngx-webstorage';
 
 import { LoginService } from 'app/core/login/login.service';
+import { AccountService } from 'app/core/auth/account.service';
 // import { Console } from 'console';
 
 @Component({
@@ -21,7 +22,6 @@ export class LoginModalComponent implements AfterViewInit {
     username: [''],
     password: [''],
     rememberMe: [false],
-    isInstructor: [false],
   });
 
   constructor(
@@ -29,7 +29,8 @@ export class LoginModalComponent implements AfterViewInit {
     private router: Router,
     public activeModal: NgbActiveModal,
     private fb: FormBuilder,
-    private localStorage: LocalStorageService
+    private localStorage: LocalStorageService,
+    private accountService: AccountService
   ) {}
 
   ngAfterViewInit(): void {
@@ -53,7 +54,6 @@ export class LoginModalComponent implements AfterViewInit {
         username: this.loginForm.get('username')!.value,
         password: this.loginForm.get('password')!.value,
         rememberMe: this.loginForm.get('rememberMe')!.value,
-        isInstructor: this.loginForm.get('isInstructor')!.value,
       })
       .subscribe(
         () => {
@@ -70,8 +70,10 @@ export class LoginModalComponent implements AfterViewInit {
             // localStorage.store('currentUser', user);
 
             // Navigate from login to home page
-            if (this.loginForm.get('isInstructor')!.value === false) this.router.navigate(['/homeStudent']);
-            else this.router.navigate(['/homeInstructor']);
+            // /!\ ADMIN account has both admin and user authorities, so don't invert these conditions (@baptboleat)
+            if (this.accountService.hasAnyAuthority('ROLE_ADMIN') || this.accountService.hasAnyAuthority('ROLE_INSTRUCTOR'))
+              this.router.navigate(['/homeInstructor']);
+            else this.router.navigate(['/homeStudent']);
           }
         },
         () => (this.authenticationError = true)
