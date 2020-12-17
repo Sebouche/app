@@ -37,6 +37,6 @@ export class StudentService {
   }
 
   findbyuser(userid: number): Observable<EntityResponseType> {
-    return this.http.get<IStudent>(`${this.resourceUrl}/nesteduser/${userid}`, { observe: 'response' });
+    return this.http.get<IStudent>(`${this.resourceUrl}/nestedstudent/${userid}`, { observe: 'response' });
   }
 }

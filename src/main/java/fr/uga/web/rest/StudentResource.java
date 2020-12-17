@@ -121,12 +121,12 @@ public class StudentResource {
     //NOT OUT-OF-THE-BOX
     
     /**
-     * {@code GET  /students/nesteduser/:userid} : get the student having the corresponding internalUser.
+     * {@code GET  /students/nestedstudent/:userid} : get the student having the corresponding internalUser.
      *
      * @param userid the id of the internalUser nested to the student to retrieve.
      * @return the {@link ResponseEntity} with status {@code 200 (OK)} and with body the student, or with status {@code 404 (Not Found)}.
      */
-    @GetMapping("/students/nesteduser/{userid}")
+    @GetMapping("/students/nestedstudent/{userid}")
     public ResponseEntity<Student> getNestedStudent(@PathVariable Long userid) {
         log.debug("REST request to get Student with corresponding internalUser : {}", userid);
         Optional<Student> student = studentRepository.findAll().stream()

@@ -266,7 +266,7 @@ public class StudentResourceIT {
     	studentRepository.saveAndFlush(student);
 
         // Get the instructor
-        restStudentMockMvc.perform(get("/api/students/nesteduser/{userid}", user.getId()))
+        restStudentMockMvc.perform(get("/api/students/nestedstudent/{userid}", user.getId()))
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_VALUE))
             .andExpect(jsonPath("$.internalUser.id").value(user.getId().intValue()));
@@ -274,9 +274,9 @@ public class StudentResourceIT {
     
     @Test
     @Transactional
-    public void getNonExistingNestedInstructor() throws Exception {
+    public void getNonExistingNestedStudent() throws Exception {
         // Get the instructor
-        restStudentMockMvc.perform(get("/api/instructors/nestedinstructor/{userid}", Long.MAX_VALUE))
+        restStudentMockMvc.perform(get("/api/students/nestedstudent/{userid}", Long.MAX_VALUE))
             .andExpect(status().isNotFound());
     }
     
