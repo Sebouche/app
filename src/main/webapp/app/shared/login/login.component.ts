@@ -72,11 +72,7 @@ export class LoginModalComponent implements AfterViewInit {
           ) {
             this.router.navigate(['']);
           } else {
-            // TODO : Saving current user in the local storage
-            // localStorage.store('currentUser', user);
-
             // Navigate from login to home page
-
             // /!\ ADMIN account has both admin and user authorities, so don't invert these conditions (@baptboleat)
 
             if (this.accountService.hasAnyAuthority('ROLE_ADMIN')) {
