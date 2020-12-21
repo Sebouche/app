@@ -79,7 +79,7 @@
         <loadData
                   file="config/liquibase/data/user.csv"
                   separator=";"
-                  tableName="jhi_user">
+                  tableName="jhi_user" identityInsertEnabled="true">
             <column name="activated" type="boolean"/>
             <column name="created_date" type="timestamp"/>
         </loadData>
@@ -87,14 +87,14 @@
         <loadData
                   file="config/liquibase/data/authority.csv"
                   separator=";"
-                  tableName="jhi_authority">
+                  tableName="jhi_authority" identityInsertEnabled="true">
             <column name="name" type="string"/>
         </loadData>
 
         <loadData
                   file="config/liquibase/data/user_authority.csv"
                   separator=";"
-                  tableName="jhi_user_authority">
+                  tableName="jhi_user_authority" identityInsertEnabled="true">
             <column name="user_id" type="numeric"/>
         </loadData>
         <createTable tableName="jhi_persistent_audit_event">
