@@ -10,9 +10,7 @@
     <property name="now" value="current_timestamp" dbms="mysql"/>
     <property name="now" value="GETDATE()" dbms="mssql"/>
 
-    <changeSet id="00000000000000" author="jhipster" dbms="mysql">
-        <createSequence sequenceName="hibernate_sequence" startValue="1050" incrementBy="50"/>
-    </changeSet>
+        <property name="autoIncrement" value="true"/>
 
     <!--
         JHipster core tables.
@@ -20,7 +18,7 @@
     -->
     <changeSet id="00000000000001" author="jhipster">
         <createTable tableName="jhi_user">
-            <column name="id" type="bigint" >
+            <column name="id" type="bigint" autoIncrement="${autoIncrement}" >
                 <constraints primaryKey="true" nullable="false"/>
             </column>
             <column name="login" type="varchar(50)">
@@ -86,7 +84,6 @@
                   file="config/liquibase/data/user.csv"
                   separator=";"
                   tableName="jhi_user" identityInsertEnabled="true">
-            <column name="id" type="numeric"/>
             <column name="activated" type="boolean"/>
             <column name="created_date" type="timestamp"/>
         </loadData>
@@ -105,7 +102,7 @@
             <column name="user_id" type="numeric"/>
         </loadData>
         <createTable tableName="jhi_persistent_audit_event">
-            <column name="event_id" type="bigint" >
+            <column name="event_id" type="bigint" autoIncrement="${autoIncrement}">
                 <constraints primaryKey="true" nullable="false"/>
             </column>
             <column name="principal" type="varchar(50)">
@@ -148,7 +145,7 @@
 
     <changeSet author="jhipster" id="00000000000002" context="test">
         <createTable tableName="jhi_date_time_wrapper">
-            <column  name="id" type="BIGINT">
+            <column autoIncrement="${autoIncrement}" name="id" type="BIGINT">
                 <constraints primaryKey="true" primaryKeyName="jhi_date_time_wrapperPK"/>
             </column>
             <column name="instant" type="timestamp"/>
