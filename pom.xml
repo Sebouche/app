@@ -105,13 +105,13 @@
     <dependencies>
         <dependency>
             <groupId>com.microsoft.sqlserver</groupId>
-            <artifactId>sqljdbc41</artifactId>
-            <version>4.1</version>
+            <artifactId>mssql-jdbc</artifactId>
+            <version>8.4.1.jre11</version>
         </dependency>
         <dependency>
             <groupId>com.github.sabomichal</groupId>
             <artifactId>liquibase-mssql</artifactId>
-            <version>1.6.4</version>
+            <version>1.5</version>
         </dependency>
         <dependency>
             <groupId>io.github.jhipster</groupId>
