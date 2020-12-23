@@ -1,13 +1,12 @@
 version: '2'
 services:
-  ecom-mysql:
-    image: mysql:8.0.20
+  ecom-postgresql:
+    image: postgres:12.3
     # volumes:
-    #     - ~/volumes/jhipster/ecom/mysql/:/var/lib/mysql/
+    #     - ~/volumes/jhipster/eCOM/postgresql/:/var/lib/postgresql/data/
     environment:
-      - MYSQL_USER=root
-      - MYSQL_ALLOW_EMPTY_PASSWORD=yes
-      - MYSQL_DATABASE=ecom
+      - POSTGRES_USER=ecom
+      - POSTGRES_PASSWORD=
+      - POSTGRES_HOST_AUTH_METHOD=trust
     ports:
-      - 3306:3306
-    command: mysqld --lower_case_table_names=1 --skip-ssl --character_set_server=utf8mb4 --explicit_defaults_for_timestamp
+      - 5432:5432
