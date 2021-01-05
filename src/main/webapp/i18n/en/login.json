@@ -5,7 +5,6 @@
       "password": "Password",
       "password.placeholder": "Your password",
       "rememberme": "Remember me",
-      "isInstructor": "Are you an instructor?",
       "button": "Sign in"
     },
     "messages": {

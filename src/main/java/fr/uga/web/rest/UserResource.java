@@ -1,9 +1,7 @@
 package fr.uga.web.rest;
 
 import fr.uga.config.Constants;
-import fr.uga.domain.Student;
 import fr.uga.domain.User;
-import fr.uga.repository.StudentRepository;
 import fr.uga.repository.UserRepository;
 import fr.uga.security.AuthoritiesConstants;
 import fr.uga.service.MailService;
@@ -35,8 +33,6 @@ import javax.validation.Valid;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.*;
-
-import org.springframework.beans.factory.annotation.Autowired;
 
 /**
  * REST controller for managing users.
@@ -73,9 +69,6 @@ public class UserResource {
     private String applicationName;
 
     private final UserService userService;
-
-    @Autowired
-    private StudentRepository studentRepository;
 
     private final UserRepository userRepository;
 
@@ -201,18 +194,6 @@ public class UserResource {
     @PreAuthorize("hasAuthority(\"" + AuthoritiesConstants.ADMIN + "\")")
     public ResponseEntity<Void> deleteUser(@PathVariable String login) {
         log.debug("REST request to delete User: {}", login);
-
-        List<Student> studentList = studentRepository.findAll();
-        Iterator<Student> iter = studentList.iterator();
-        Student currentStudent;
-        while (iter.hasNext()){
-            currentStudent = iter.next();
-
-            if (currentStudent.getInternalUser() != null && currentStudent.getInternalUser().getLogin().equals(login)){
-                studentRepository.delete(currentStudent);
-            }
-        }
-        
         userService.deleteUser(login);
         return ResponseEntity.noContent().headers(HeaderUtil.createAlert(applicationName,  "userManagement.deleted", login)).build();
     }

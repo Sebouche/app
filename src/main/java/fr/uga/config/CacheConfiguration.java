@@ -48,30 +48,6 @@ public class CacheConfiguration {
             createCache(cm, fr.uga.domain.User.class.getName());
             createCache(cm, fr.uga.domain.Authority.class.getName());
             createCache(cm, fr.uga.domain.User.class.getName() + ".authorities");
-            createCache(cm, fr.uga.domain.Student.class.getName());
-            createCache(cm, fr.uga.domain.Student.class.getName() + ".semesterInscriptions");
-            createCache(cm, fr.uga.domain.Student.class.getName() + ".studentActivities");
-            createCache(cm, fr.uga.domain.Student.class.getName() + ".materials");
-            createCache(cm, fr.uga.domain.Instructor.class.getName());
-            createCache(cm, fr.uga.domain.Instructor.class.getName() + ".participateActivities");
-            createCache(cm, fr.uga.domain.Instructor.class.getName() + ".editableActivities");
-            createCache(cm, fr.uga.domain.Activity.class.getName());
-            createCache(cm, fr.uga.domain.Activity.class.getName() + ".studentActivities");
-            createCache(cm, fr.uga.domain.Activity.class.getName() + ".monitors");
-            createCache(cm, fr.uga.domain.Activity.class.getName() + ".managers");
-            createCache(cm, fr.uga.domain.StudentActivity.class.getName());
-            createCache(cm, fr.uga.domain.Cursus.class.getName());
-            createCache(cm, fr.uga.domain.SemesterInscription.class.getName());
-            createCache(cm, fr.uga.domain.Semester.class.getName());
-            createCache(cm, fr.uga.domain.Semester.class.getName() + ".semesterInscriptions");
-            createCache(cm, fr.uga.domain.Material.class.getName());
-            createCache(cm, fr.uga.domain.Material.class.getName() + ".students");
-            createCache(cm, fr.uga.domain.Tracksuit.class.getName());
-            createCache(cm, fr.uga.domain.Tracksuit.class.getName() + ".materials");
-            createCache(cm, fr.uga.domain.Board.class.getName());
-            createCache(cm, fr.uga.domain.Board.class.getName() + ".materials");
-            createCache(cm, fr.uga.domain.Sail.class.getName());
-            createCache(cm, fr.uga.domain.Sail.class.getName() + ".materials");
             // jhipster-needle-ehcache-add-entry
         };
     }

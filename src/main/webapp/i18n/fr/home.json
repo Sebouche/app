@@ -1,7 +1,10 @@
 {
   "home": {
-    "title": "Bonjour !",
-    "subtitle": "Ceci est votre page de connection",
+    "title": "Bienvenue, Java Hipster !",
+    "subtitle": "Ceci est votre page d'accueil",
+    "logged": {
+      "message": "Vous êtes connecté en tant que \"{{username}}\"."
+    },
     "question": "Si vous avez des questions à propos de JHipster :",
     "link": {
       "homepage": "Page d'accueil de JHipster",
