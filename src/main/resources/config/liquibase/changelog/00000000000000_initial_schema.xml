@@ -6,8 +6,8 @@
     xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.9.xsd
                         http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
 
-        <changeSet id="00000000000000" author="jhipster">
-        <createSequence sequenceName="start_sequence" startValue="1050" incrementBy="50"/>
+    <changeSet id="00000000000000" author="jhipster" dbms="postgresql">
+        <createSequence sequenceName="hibernate_sequence" startValue="1000" incrementBy="1"/>
     </changeSet>
     
     <!--
