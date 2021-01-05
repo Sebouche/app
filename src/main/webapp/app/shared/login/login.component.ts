@@ -2,8 +2,10 @@ import { Component, AfterViewInit, ElementRef, ViewChild } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { Router } from '@angular/router';
+import { LocalStorageService } from 'ngx-webstorage';
 
 import { LoginService } from 'app/core/login/login.service';
+// import { Console } from 'console';
 
 @Component({
   selector: 'jhi-login-modal',
@@ -19,9 +21,16 @@ export class LoginModalComponent implements AfterViewInit {
     username: [''],
     password: [''],
     rememberMe: [false],
+    isInstructor: [false],
   });
 
-  constructor(private loginService: LoginService, private router: Router, public activeModal: NgbActiveModal, private fb: FormBuilder) {}
+  constructor(
+    private loginService: LoginService,
+    private router: Router,
+    public activeModal: NgbActiveModal,
+    private fb: FormBuilder,
+    private localStorage: LocalStorageService
+  ) {}
 
   ngAfterViewInit(): void {
     if (this.username) {
@@ -44,6 +53,7 @@ export class LoginModalComponent implements AfterViewInit {
         username: this.loginForm.get('username')!.value,
         password: this.loginForm.get('password')!.value,
         rememberMe: this.loginForm.get('rememberMe')!.value,
+        isInstructor: this.loginForm.get('isInstructor')!.value,
       })
       .subscribe(
         () => {
@@ -55,6 +65,13 @@ export class LoginModalComponent implements AfterViewInit {
             this.router.url.startsWith('/account/reset/')
           ) {
             this.router.navigate(['']);
+          } else {
+            // TODO : Saving current user in the local storage
+            // localStorage.store('currentUser', user);
+
+            // Navigate from login to home page
+            if (this.loginForm.get('isInstructor')!.value === false) this.router.navigate(['/homeStudent']);
+            else this.router.navigate(['/homeInstructor']);
           }
         },
         () => (this.authenticationError = true)
